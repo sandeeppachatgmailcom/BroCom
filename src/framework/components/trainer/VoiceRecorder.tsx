@@ -5,7 +5,7 @@ import uploadAudio from '../../services/saveAudio';
 
 export default function VoiceRecorder(props: any) {
   const { value } = props;
-  const [recordings, setRecordings] = useState([]); // Array to store audio recordings
+  const [recordings, setRecordings] = useState<any>([]); // Array to store audio recordings
   const [recaudio,setRecAudio] = useState('')
 
   const loadAttachment = (audioLink: string) => {
@@ -69,13 +69,13 @@ useEffect(()=>{
 },[recaudio])
   return (
     <div className="flex align-middle p-1  border-blue-600 "  id="audio">
-      {recordings.map((recording, index) => (
+      {recordings.map((recording:any, index:any) => (
         <div key={index} className="recording-item me-1 flex h-[50px] overflow-hidden shadow-gray-100 rounded-full ">
           <audio src={recording.audio.src} controls />
         </div>
       ))}
       <div className='h-10  flex '>
-        {!value ? <AudioRecorder classes={'w-full'}  onRecordingComplete={handleRecordComplete} recorderControls={recorderControls} showVisualizer={true} />:""}
+        {!value ? <AudioRecorder   onRecordingComplete={handleRecordComplete} recorderControls={recorderControls} showVisualizer={true} />:""}
         {recaudio?.length ? (
           <button onClick={() => props.onSaveClick()} className="h-10 w-10   ms-1 flex justify-evenly rounded-full shadow-md shadow-gray-100 items-center border bg-gray-300 text-black  w-30 hover:border hover:border-blue-400 hover:text-blue-500 " >
             <BsFillFloppyFill className='text-green-800'/>

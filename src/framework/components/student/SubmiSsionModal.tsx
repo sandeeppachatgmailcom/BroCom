@@ -1,6 +1,5 @@
 import { Task_model } from "../../../entity/response/task_model";
-
-import VideoMaker from "../trainer/VideoMaker"
+ 
 import VoiceRecorder from "../trainer/VoiceRecorder"
 import { FaPowerOff } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -13,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import useGetLogin from "../../../useCases/useGetLogin";
 import UploadImageDocument from "../utilComponents/UploadImage";
 import UploadPdfDocument from "../utilComponents/pdfUploader";
+import GeneralTask from "../trainer/generalTaskSubmisssion";
 
 
 const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose }: { program: any, ScheduledTaskID: any, task: Task_model|any, onclose: any, studentSubMission: any }) => {
@@ -143,7 +143,7 @@ const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose }: { program:
                     task?.taskType == "listening" ? <VoiceRecorder data={formData} verified={formData?.verified} name='tasklink' onChange={handleTaskChange} onSaveClick={onSaveClick} value={formData?.tasklink} /> :
                     task?.taskType == "reading" ? <VoiceRecorder data={formData} verified={formData?.verified} name='tasklink' onChange={handleTaskChange} onSaveClick={onSaveClick} value={formData?.tasklink} /> :
                     task?.taskType == "Speaking" ? <VoiceRecorder data={formData} verified={formData?.verified} name='tasklink' onChange={handleTaskChange} onSaveClick={onSaveClick} value={formData?.tasklink} /> :
-                    task?.taskType == "OneToOne" ? <VideoMaker data={formData} verified={formData?.verified} name='tasklink' onChange={handleTaskChange} onSaveClick={onSaveClick} value={formData?.tasklink} /> : ''
+                    task?.taskType == "OneToOne" ? <GeneralTask data={formData} verified={formData?.verified} name='tasklink' onChange={handleTaskChange} onSaveClick={onSaveClick} value={formData?.tasklink} /> :''
                 }
               </div>
 

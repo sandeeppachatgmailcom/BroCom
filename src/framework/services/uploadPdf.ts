@@ -2,7 +2,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import firebaseDB from "./config";
 import { v4 } from "uuid";
 
-const uploadPDF = async (pdfFile) => {
+const uploadPDF = async (pdfFile:any) => {
     const pdfRef = ref(firebaseDB, `/User/documents/${v4() + pdfFile.name}`);
 
     if (pdfFile) {

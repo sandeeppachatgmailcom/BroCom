@@ -7,7 +7,7 @@ const useWeeklyStudentsDetails=()=>{
 
     const fetchuWeeklyStudentsDetails= async ()=>{
         try {
-            const data:{Week:string,students:number} = await axiosApi.get(trainerApi.getWeeklyStudentssummary)
+            const data:any= await axiosApi.get(trainerApi.getWeeklyStudentssummary)
     
         const temp = data?.data?.map((item:any)=>{ return {Xvalue:item?._id,students:item?.count}})
         temp.sort((a:any,b:any)=>a.Xvalue-b.Xvalue)
