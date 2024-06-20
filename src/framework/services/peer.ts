@@ -1,10 +1,13 @@
+  // Import the Peer type if available
+
 class PeerService {
+  peer:any
   constructor() {
     if (!this.peer) {
       this.peer = new RTCPeerConnection({
         iceServers: [
           {
-            urls: [
+            urls: [ 
               "stun:stun.l.google.com:19302",
               "stun:global.stun.twilio.com:3478",
             ],
@@ -14,7 +17,7 @@ class PeerService {
     }
   }
 
-  async getAnswer(offer) {
+  async getAnswer(offer:any) {
     if (this.peer) {
       await this.peer.setRemoteDescription(offer);
       const ans = await this.peer.createAnswer();
@@ -23,7 +26,7 @@ class PeerService {
     }
   }
 
-  async setLocalDescription(ans) {
+  async setLocalDescription(ans:any) {
     if (this.peer) {
       await this.peer.setRemoteDescription(new RTCSessionDescription(ans));
     }

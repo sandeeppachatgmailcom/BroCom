@@ -1,7 +1,7 @@
 import {LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip,Legend } from "recharts";
-import { useSelector } from "react-redux";
+ 
   
-const MarkList = ({user}) => {
+const MarkList = ({user}:{user:any}) => {
    //const user = useSelector((state:any)=>state.activeUser.user)
    let markData = []
  

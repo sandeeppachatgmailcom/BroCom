@@ -6,9 +6,8 @@ import { FaPowerOff } from "react-icons/fa";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import { switchDarkTheme, toggleTheme } from '../../ReduxStore/themeSlice';
- 
-import { Header_Component } from '../../../entity/components/common/header';
+import {   toggleTheme } from '../../ReduxStore/themeSlice';
+  
 import { toggleMultiUser } from '../../ReduxStore/multipleUser';
 import { login } from '../../ReduxStore/activeUser';
 

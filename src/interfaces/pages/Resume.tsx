@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 const Resume = () => {
     const [color, setColor] = useState('')
     const [verticalColor, setVerticalColor] = useState('')
-    const activeUser = useSelector((state) => state.activeUser.user)
+    const activeUser = useSelector((state:any) => state.activeUser.user)
 
     return (
         <div className="flex flex-col  h-[100%] border w-full">

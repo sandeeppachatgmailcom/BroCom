@@ -1,16 +1,10 @@
 import { useSelector } from "react-redux" 
-import {  useEffect, useRef, useState } from "react";
+import {  useEffect,    useState } from "react";
 import DropdownMenu from "../utilComponents/DropdownMenu";
 import axiosApi from "../../api/axios";
-import { studentApi, trainerApi, } from "../../../entity/constants/api";
+import { studentApi,    } from "../../../entity/constants/api";
 import { Event_Model } from "../../../entity/StateStore/activeUser";
-import { ToastContainer, toast } from "react-toastify";
-import VoiceRecorder from "../trainer/VoiceRecorder";
-import VideoMaker from "../trainer/VideoMaker";
-//import TextEditor from "../trainer/TextEditor";
-import { FaExpand } from "react-icons/fa";
-import { BiCollapse } from "react-icons/bi";
-import useCompareObjects from "../../../useCases/useCompareObjects";
+import { ToastContainer   } from "react-toastify"; 
 import { Task_model } from "../../../entity/response/task_model";
 import SubmiSsionModal from "./SubmiSsionModal";
 import { UserEntity_Model } from "../../../entity/response/userModel";
@@ -18,19 +12,15 @@ import { RxDropdownMenu } from "react-icons/rx";
 import { FcCollapse } from "react-icons/fc";
 
 const StudentTask = (props: any) => {
-        const [formData, setFormData] = useState<Event_Model & {ScheduledTaskID:string }>()
+        const [formData, setFormData] = useState<Event_Model & {ScheduledTaskID:string }|any>()
         const user :UserEntity_Model = useSelector((state:any)=>state.activeUser.user)
-        const [initialState, setInitialState] = useState()
-        const [category, setCategory] = useState<any>({ })
         const [subMission,setSubmission] = useState(false)
-        const [task, setTask] = useState()
+        const [task, setTask] = useState<any>()
         const [selectedTask,setSelectedTask] = useState()
-        const longTextRef = useRef()
         const [height,setHeight] = useState('h-[100px]')
-        const [studentSubMission,setStudentSubmission] = useState()
+        const [studentSubMission,setStudentSubmission] = useState<any>({})
         useEffect(() => {
-                setFormData(props.pending),
-                setInitialState(props.pending)
+                setFormData(props.pending) 
         }, [props.pendings])
 
         useEffect(()=>{
@@ -41,9 +31,7 @@ const StudentTask = (props: any) => {
                 console.log(formData,'forData')
         },[height])
         useEffect(()=>{
-            user.submission? setStudentSubmission(user.submission):setStudentSubmission({
-
-            })      
+            user.submission? setStudentSubmission(user.submission):setStudentSubmission({})      
         },[user])
 
         useEffect(()=>{
@@ -55,7 +43,7 @@ const StudentTask = (props: any) => {
         
         
         
-        const handleChange = (e)=>{
+        const handleChange = (e:any)=>{
                 const {name,value} = e.target;
                 console.log(name,value)
                 const temp:any = {
@@ -64,55 +52,29 @@ const StudentTask = (props: any) => {
                 }
                 setFormData(temp)
         } 
-        const handleChangeCaterogry = (key,item)=>{
-                
-                const tempCategory = {
-                        ...category,
-                      [key]:{
-                        ...category[key],
-                        [item]:!category[key][item]
-                      }
-                       
-                }
-                setCategory(tempCategory)
-                const tempFormData = {
-                        ...formData,
-                        audience:tempCategory
-                }
-                setFormData(tempFormData)
-        }
-        useEffect(()=>{
-                setCategory(formData?.audience)
-                console.log(formData,'formData')
-                console.log( formData?.submission[0]?.Speaking)
-        },[formData])
-        
-
        
-        const handleSaveClick =async  ()=>{
-                console.log(initialState,formData,useCompareObjects(initialState,formData),'mic testing ')
-                console.log(validateObj.validateObject(initialState,formData),'validateObj.validateObject(initialState,formData)')
-                const result =validateObj.validateObject(initialState,formData) 
-                if(!result){ const data = await axiosApi.post(trainerApi.saveScheduledTask,formData)
-                        setFormData( data.data)    
-                }
-                else toast.error('no changes to update')
-                
-                
-        }
+       
+        type IsubmitTask  = {submissionId:string ,
+                studentId:string,
+                eventId:string | undefined,
+                scheduledTaskId:string | undefined,
+                matchedTasks:string | undefined|any,
+                WriteTask?:string | undefined|any,
+                audioLink?:string | undefined|any,
+                Speaking?:string | undefined|any,}
+
+        
         const submitTask =async ()=>{
-                console.log(formData, formData?.audioLink?.length , formData?.videolink?.length , formData?.WriteTask?.length , 'formData.audioLink && formData.videolink')
+                 
                 
-                
-                const submitTask =  {
+                const submitTask:IsubmitTask  =   {
                         submissionId:'' ,
                         studentId:user.email,
                         eventId:formData?.eventId ,
                         scheduledTaskId:formData?.ScheduledTaskID,
                         matchedTasks:formData?.matchedTasks
-                        
                 } 
-                console.log(submitTask,'submitTasksubmitTasksubmitTasksubmitTask')
+                
                 if(submitTask?.WriteTask?.length ||  submitTask?.audioLink?.length || submitTask?.Speaking?.length){
                         const submit = await axiosApi.post(studentApi.sumbitTask,submitTask)
                    console.log(submit),'submitsubmitsubmitsubmit'
@@ -160,7 +122,7 @@ const StudentTask = (props: any) => {
                                  
                                 <div className="block p-2   ">
                                         
-                                        {formData?.matchedTasks?.map((task: Task_model) => (
+                                        {formData?.matchedTasks?.map((task: Task_model|any) => (
                                                         <div
                                                         key={task.taskId} // Added key prop for proper list rendering
                                                         className="p-2 justify-between rounded-md shadow-md m-1 flex"

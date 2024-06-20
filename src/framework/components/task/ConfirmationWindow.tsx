@@ -1,8 +1,8 @@
-import React from "react";
+ 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 type props=any
-const ConfirmationWindow = ({ title, message, onConfirm, onCancel }:props) => {
+const ConfirmationWindow = ({  message, onConfirm }:props) => {
   const handleConfirm = () => {
     onConfirm()
     toast.dismiss(); // Dismiss the toast

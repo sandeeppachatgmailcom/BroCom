@@ -12,7 +12,7 @@ const useContactList = (searchText: string) => {
     const data = await axiosApi.get(utilityApis.listGetActiveUsers);
      
     setInitalData(data.data);
-    let tempList = data.data?.filter((item) =>
+    let tempList = data.data?.filter((item:any) =>
       item?.firstName?.toLowerCase().startsWith(searchText.toLowerCase())
     );
     
@@ -21,7 +21,7 @@ const useContactList = (searchText: string) => {
 
   useEffect(() => {
       
-      let tempList = initalData?.filter((item) =>
+      let tempList = initalData?.filter((item:any) =>
         item?.firstName?.toLowerCase().startsWith(searchText.toLowerCase())
       );
       
@@ -43,29 +43,4 @@ useEffect(()=>{
 
 export default useContactList;
 
-const users = {
-  newNode: {
-    children: {},
-    isEnd: false,
-  },
-
-  root: {
-    children: {},
-    isEnd: false,
-  },
-
-  addName(tempName: string) {
-    const name = tempName.toLowerCase(); // Lowercase before adding
-    let current = this.root;
-    for (let char of name) {
-      if (!current.children[char]) {
-        current.children[char] = {
-          children: {},
-          isEnd: false,
-        };
-      }
-      current = current.children[char];
-    }
-    current.isEnd = true;
-  },
-};
+ 

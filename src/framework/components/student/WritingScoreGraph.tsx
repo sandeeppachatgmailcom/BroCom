@@ -1,8 +1,6 @@
 import {LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip,Legend } from "recharts";
-import useGetStudentsPending from "../../../useCases/useGetStudentsPending";
-import { useSelector } from "react-redux";
   
-const WritingScoreGraph = ({taskType,user}) => {
+const WritingScoreGraph = ({taskType,user}:{taskType:any,user:any}) => {
    
    let markData = []
    

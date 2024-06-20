@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-import { Modal_Component } from '../../entity/components/common/Modal';
-import { CgArrowBottomRightR } from "react-icons/cg";
-import VideoCall from '../../framework/components/chatBox/VideoCall';
+import  { useState } from 'react'; 
+import { CgArrowBottomRightR } from "react-icons/cg"; 
 import { HiMiniSpeakerWave, HiMiniSpeakerXMark } from 'react-icons/hi2';
 import { IoCall, IoMic, IoMicOff, IoVideocamOffSharp, IoVideocamSharp } from 'react-icons/io5';
 import { MdAddIcCall } from 'react-icons/md';
-import IndividualVideoTile from '../../framework/components/chatBox/IndividualVideoTile';
-import { useSelector } from 'react-redux';
+import IndividualVideoTile from '../../framework/components/chatBox/IndividualVideoTile'; 
 
-const VideoCallRoom: React.FC<Modal_Component> = ({ isOpen, onClose, children, user }) => {
+const VideoCallRoom = ({   onClose, children, user }:{   onClose:any, children?:any, user:any }) => {
     const [count, setCount] = useState(0)
     const [mute, setMute] = useState(false)
     const [speakerMute, setSpeakerMute] = useState(true)
     const [camview, setCamview] = useState(true)
-    const [call, setCall] = useState(false)
-    const [room, setRoom] = useState(false)
-    const theme =useSelector((state:any) => state.theme.theme)
+    const [call, setCall] = useState(false) 
+   
     setInterval(() => {
         setCount(count)
         if (count == 900) setCount(100)

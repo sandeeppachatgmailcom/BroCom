@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { FaUserTie } from "react-icons/fa6";
 import { HiMiniSpeakerWave } from "react-icons/hi2";
 import { HiMiniSpeakerXMark } from "react-icons/hi2";
@@ -7,46 +7,45 @@ import { IoMic } from "react-icons/io5";
 import { IoVideocamSharp } from "react-icons/io5";
 import { IoVideocamOffSharp } from "react-icons/io5";
 import { IoCall } from "react-icons/io5";
-import { MdAddIcCall } from "react-icons/md"; 
-import ReactPlayer from 'react-player'
-import VideoCallRoom from "../../../interfaces/pages/VideoCallRoom";
+import { MdAddIcCall } from "react-icons/md";   
 import Peer from "simple-peer"
+import VideoCallRoom from "../../../interfaces/pages/VideoCallRoom";
  
 
-const VideoCallPeerjs = ({user,socket}) => {
-    const [mute, setMute] = useState(true)
-    const [speakerMute, setSpeakerMute] = useState(true)
-    const [camview, setCamview] = useState(true)
-    const [call, setCall] = useState(false)
-    const [room, setRoom] = useState(false)
+const VideoCallPeerjs = ({user,socket}:any) => {
+    const [mute, setMute] = useState<boolean>(true)
+    const [speakerMute, setSpeakerMute] = useState<boolean>(true)
+    const [camview, setCamview] = useState<boolean>(true)
+    const [call, setCall] = useState<boolean>(false)
+    const [room, setRoom] = useState<boolean>(false)
     
    
     const [ me, setMe ] = useState("")
 	const [ stream, setStream ] = useState()
-	const [ receivingCall, setReceivingCall ] = useState(false)
+	 
 	const [ caller, setCaller ] = useState("")
-	const [ callerSignal, setCallerSignal ] = useState()
+	const [ callerSignal, setCallerSignal ] = useState <any>()
 	const [ callAccepted, setCallAccepted ] = useState(false)
-	const [ idToCall, setIdToCall ] = useState("")
+	const [ idToCall ] = useState("")
 	const [ callEnded, setCallEnded] = useState(false)
 	const [ name, setName ] = useState("")
 
-	const myVideo = useRef()
-	const userVideo = useRef()
-	const connectionRef= useRef()
+	const myVideo:any = useRef()
+	const userVideo :any= useRef()
+	const connectionRef:any = useRef()
        
     useEffect(() => {
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream:any) => {
 			setStream(stream)
 				myVideo.current.srcObject = stream
 		})
 
-	    socket.on("me", (id) => {
+	    socket.on("me", (id:any) => {
 			setMe(id)
 		})
 
-		socket.on("callUser", (data) => {
-			setReceivingCall(true)
+		socket.on("callUser", (data:any) => {
+			 
 			setCaller(data.from)
 			setName(data.name)
 			setCallerSignal(data.signal)
@@ -54,7 +53,7 @@ const VideoCallPeerjs = ({user,socket}) => {
 	}, [])
 
 
-	const callUser = (id) => {
+	const callUser = (id:any) => {
 		const peer = new Peer({
 			initiator: true,
 			trickle: false,
@@ -73,7 +72,7 @@ const VideoCallPeerjs = ({user,socket}) => {
 				userVideo.current.srcObject = stream
 			
 		})
-		socket.on("callAccepted", (signal) => {
+		socket.on("callAccepted", (signal:any) => {
 			setCallAccepted(true)
 			peer.signal(signal)
 		})
@@ -170,7 +169,7 @@ const VideoCallPeerjs = ({user,socket}) => {
                     </div >
                     <div className=" items-center justify-center flex  rounded-full overflow-hidden   ">
                         {call ? <IoCall onClick={() => setCall(!call)} className="  border-4 ms-1   rounded-full border-blue-400 text-blue-500 w-[100%] h-[100%] p-3" />
-                            : <MdAddIcCall onClick={() => setCall(!call)} className=" border-4 ms-1   rounded-full border-gray-500  border-gray-500 text-gray-500 w-[100%] h-[100%] p-3" />
+                            : <MdAddIcCall onClick={() => setCall(!call)} className=" border-4 ms-1   rounded-full  border-gray-500 text-gray-500 w-[100%] h-[100%] p-3" />
                         }
                     </div >
 

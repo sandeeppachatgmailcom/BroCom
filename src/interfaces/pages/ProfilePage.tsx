@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import MenuBar from "../../framework/components/header/MenuBar"
 import axios from "axios"
 import axiosApi from "../../framework/api/axios"
-import { login, logout } from "../../framework/ReduxStore/activeUser"
+import { login    } from "../../framework/ReduxStore/activeUser"
 import { publicApi, userApi } from "../../entity/constants/api"
 import Academics from "../../framework/components/user/Academics"
 
@@ -26,7 +26,7 @@ const ProfilePage = (_props: any) => {
     const user = useSelector((state: any) => state.activeUser.user)
 
     const dispatch = useDispatch()
-    const [border, setBorder] = useState('none')
+    const [border,  ] = useState('none')
     const navigate = useNavigate();
     const [address, setAddress] = useState([])
     const [formData, setFormData] = useState(user)
@@ -155,7 +155,7 @@ const ProfilePage = (_props: any) => {
                     <div className="overflow-y-scroll  w-full  xl:flex   bg-blue-500 bg-opacity-5  border-gray-300 border-opacity-45 rounded-xl xl:ms-1 mt-2 ">
                         <div className={`${theme} w-full  flex-wrap sm:block rounded-xl   items-center justify-between min-h-screen `}>
                             <div className="flex flex-col justify-center w-full  ">
-                                <ProfileImageBox changebutton={true} height='200px' width='200px' imageLink={formData.profileImage} onParentChange={(e: any) => handleChange(e)} />
+                                <ProfileImageBox changebutton={true} height='200px' width='200px' />
                                 <h5 className="text-center">Info about you and your preferences across Mangrow services</h5>
                             </div>
                             <div className="block sm:w-full xl:flex p-1 items-center justify-center" >

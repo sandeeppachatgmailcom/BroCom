@@ -1,6 +1,5 @@
 import { Task_model } from "../../../entity/response/task_model";
-import TextEditor from "../trainer/TextEditor";
-import VedioRecorder from "../trainer/VideoRecorder";
+
 import VideoMaker from "../trainer/VideoMaker"
 import VoiceRecorder from "../trainer/VoiceRecorder"
 import { FaPowerOff } from "react-icons/fa";
@@ -10,30 +9,21 @@ import { UserEntity_Model } from "../../../entity/response/userModel";
 import { login } from "../../ReduxStore/activeUser";
 import axiosApi from "../../api/axios";
 import { userApi } from "../../../entity/constants/api";
-import GeneralTask from "../trainer/GeneralTaskSubmisssion";
 import { ToastContainer, toast } from "react-toastify";
 import useGetLogin from "../../../useCases/useGetLogin";
-import UploadImage from "../utilComponents/UploadImage";
 import UploadImageDocument from "../utilComponents/UploadImage";
 import UploadPdfDocument from "../utilComponents/pdfUploader";
 
 
-const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose, studentSubMission }: { program: object, ScheduledTaskID: string, task: Task_model, onclose: any, studentSubMission: any }) => {
+const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose }: { program: any, ScheduledTaskID: any, task: Task_model|any, onclose: any, studentSubMission: any }) => {
   useGetLogin('manGrowstudent')
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState<any>({})
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.activeUser.user)
-
-
-
-
-
+  const user = useSelector((state:any) => state.activeUser.user)
 
   useEffect(() => {
-
     const taskId = task?.taskId;
     const scheduledTask = user?.submission?.[ScheduledTaskID]?.[taskId]?.[0] ? user?.submission?.[ScheduledTaskID]?.[taskId]?.[0] : {};
-    console.log(program, 'programName')
     setFormData({
       ...task,
       tasklink: scheduledTask ? scheduledTask?.tasklink : ''
@@ -41,7 +31,6 @@ const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose, studentSubMi
   }, [task])
   useEffect(() => {
     // !tempUser.submission ?  tempUser?.submission[ScheduledTaskID] = tempsubmission
-    console.log(formData, 'formData')
   }, [formData])
 
 
@@ -100,14 +89,14 @@ const SubmiSsionModal = ({ program, ScheduledTaskID, task, onclose, studentSubMi
       const saveuser = await axiosApi.post(userApi.saveBasicProfile, tempUser)
       console.log(saveuser, 'saved result')
       if (saveuser.data.status) {
-        const mess = toast.success(saveuser.data.message)
+         toast.success(saveuser.data.message)
       }
     }
     else{
       toast.error('no task to submit')
     }
 
-    const data = user.subMission ? user.subMission : {}
+    
     onclose(false)
   }
 

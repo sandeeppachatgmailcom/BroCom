@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import Profile from "../../framework/components/utilComponents/profile";
 import ChatBox from "../../framework/components/chatBox/chatBox";
 import StudentsPending from "../../framework/components/student/StudentsPending";
 import { Home_Page } from "../../entity/pages/homePage";
 import StudentHistory from "../../framework/components/student/StudentHistory";
-import MarkList from "../../framework/components/student/MarkList";
-import MyCalender from "../../framework/components/trainer/MyCalender";
 import useGetLogin from "../../useCases/useGetLogin";
-import { useNavigate } from "react-router-dom";
 import Gallery from "../../framework/components/utilComponents/Gallery";
 
 
 const HomePage = (_props: Home_Page) => {
-    const navigate = useNavigate()
     useGetLogin('manGrowstudent')
     const [menu,setMenu] = useState(1)
     const darkTheme = useSelector((state: any) => state.theme)

@@ -8,10 +8,9 @@ import { toast } from "react-toastify";
 import { login } from "../../ReduxStore/activeUser";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../../interfaces/pages/modalOnLoad";
-import { userApi } from "../../../entity/constants/api";
-import { ResetpasswordwithOtp_Component } from "../../../entity/components/user/resetpasswordwithOtp";
+import { userApi } from "../../../entity/constants/api"; 
 
-const ResetpasswordwithOtp = (props:ResetpasswordwithOtp_Component) => {
+const ResetpasswordwithOtp = (props:any) => {
   
   const dispatch = useDispatch()
   const navigate = useNavigate()

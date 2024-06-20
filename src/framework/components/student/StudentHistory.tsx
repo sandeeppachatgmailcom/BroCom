@@ -3,37 +3,36 @@ import { useEffect, useRef, useState } from "react"
 import { MdVerified } from "react-icons/md";
 import MarkList from "./MarkList";
 import WritingScoreGraph from "./WritingScoreGraph";
-
-import useGetStudentsPending from "../../../useCases/useGetStudentsPending";
+ 
 import useStudentProgressSummary from "../../../useCases/useStudentProgressSummary";
 import CircleChart from "../graphs/CircleGraph";
 import useGetUserByemail from "../../../useCases/useGetUserByemail";
 import { UserEntity_Model } from "../../../entity/response/userModel";
 
-const StudentHistory = ({onChane,useremail}:{onChane:()=>{},useremail:string})=>{
+const StudentHistory = ({ useremail}:{ useremail:string})=>{
     
    
-    const user: UserEntity_Model | void = useGetUserByemail(useremail);
+    const user: UserEntity_Model | void | any = useGetUserByemail(useremail);
 
      
-    const parentDivRef = useRef()
-    const studentProgress = useStudentProgressSummary({email:user?.email})||[]
+    const parentDivRef = useRef<HTMLDivElement>(null);
+    const studentProgress :any = useStudentProgressSummary({email:user?.email })||[]
      //useGetLogin('manGrowstudent');
-     const [pendingGraphData,setPendingGraphData] = useState([])      
+     const [pendingGraphData,setPendingGraphData] = useState<{name:string,value:number  }[]>([])      
        
         useEffect(()=>{
          if(studentProgress.length){ 
             const pending =Math.abs( studentProgress[0]?.totalPrograms.length  - Object.keys(studentProgress[0]?.submission||{}).length)||0  
             const submitted = Object.keys(studentProgress[0]?.submission||{}).length||0
-            const Data =  [{name:'Pending',value : pending  } ,{name:'Compelted',value : submitted }  ]
+            const Data :{name:string,value:number  }[] =  [{name:'Pending',value : pending  } ,{name:'Compelted',value : submitted }  ]
             setPendingGraphData(Data)}
         },[studentProgress]) 
  
         const endDate = new Date()
         endDate.setDate(endDate.getDate()+5)
-        const pending = useGetStudentsPending({email:user?.email,batch:user?.batchId,startDate:new Date().toISOString(),endDate:endDate.toISOString()})
+       
         
-     const buttonColor = {
+     const buttonColor:Record<number, string> = {
         1:"bg-blue-400",
         2:"bg-blue-500",
         3:"bg-red-400",
@@ -43,9 +42,7 @@ const StudentHistory = ({onChane,useremail}:{onChane:()=>{},useremail:string})=>
         7:"bg-yellow-400",
         8:"bg-yellow-500",
         9:"bg-green-700",
-        10:"bg-green-800",
-        
-}
+        10:"bg-green-800" }
 
     return  <div className="block w-full rounded-xl  h-[100%]   overflow-y-scroll ">
         {user?  user?.role == 'student' &&  
@@ -88,9 +85,8 @@ const StudentHistory = ({onChane,useremail}:{onChane:()=>{},useremail:string})=>
                                 </div>
                                 <div className="block w-9/12 h-10  overflow-scroll  ">
                                     <div className=" flex w-full flex-nowrap">
-                                    {Object.keys(user?.submission[submission][item][0]?.mark).map((mark)=>{
-                                        return user?.submission[submission][item][0]?.mark[mark] ? <button className={` ${buttonColor[mark]} w-8 h-8 text-small p-1 rounded-md text-white  m-1`} type="button">{mark} </button>:<button className={` ${buttonColor[mark]} w-8 h-8 text-small p-1 rounded-md text-white bg-opacity-15 text-opacity-35 m-1`} type="button">{mark} </button>   
-                                         
+                                    {Object.keys(user?.submission[submission][item][0]?.mark).map((mark:any)=>{
+                                        return user?.submission[submission][item][0]?.mark[mark] ? <button className={` ${buttonColor[mark] } w-8 h-8 text-small p-1 rounded-md text-white  m-1`} type="button">{mark} </button>:<button className={` ${buttonColor[mark]} w-8 h-8 text-small p-1 rounded-md text-white bg-opacity-15 text-opacity-35 m-1`} type="button">{mark} </button>   
                                     })}
                                     </div>
                                         <h1 className="text-sm items-center h-10  "> {user?.submission[submission][item][0]?.comment}</h1>      

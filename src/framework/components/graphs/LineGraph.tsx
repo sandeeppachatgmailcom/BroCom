@@ -1,38 +1,8 @@
 import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+ 
 
-const dummy = [
-  {
-    Week: 'Week 1',
-    students: 2,
-    },
-  {
-    Week: 'Week 2',
-    students: 1,
-    },
-  {
-    Week: 'Week 3',
-    students: 9,
-    },
-  {
-    Week: 'Week 4',
-    students: 3,
-    },
-  {
-    Week: 'Week 5',
-    students: 4,
-    },
-  {
-    Week: 'Week 6',
-    students: 3,
-    },
-  {
-    Week: 'Week 7',
-    students: 4,
-    },
-];
-
-const LineGraph=({graphData})=> {
+const LineGraph=({graphData}:any)=> {
   const [data,setData] = useState()  
   
   useEffect(()=>{

@@ -3,9 +3,7 @@ import { StudentsPending_Component } from '../../../entity/components/students/s
 import { useSelector } from 'react-redux';
 import axiosApi from '../../api/axios';
 import { studentApi } from '../../../entity/constants/api';
-import PendingEvents from '../trainer/PendingEvents';
 import StudentTask from './StudentTask';
-import { current } from '@reduxjs/toolkit';
  
 
 
@@ -41,7 +39,7 @@ const StudentsPending:StudentsPending_Component = ( ) => {
     },[user])
    return (
     <div className=" w-full   rounded-lg  h-[100%] bg-opacity-10 px-2 py-2 w-100 ">
-      {formData && formData.map((item)=>{
+      {formData && formData.map((item:any)=>{
         return (<div key={item.ScheduledTaskID} className='m-2 rounded-lg '>
                 <StudentTask pending = {item} />
         </div>)

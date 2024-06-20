@@ -8,9 +8,8 @@ import { IoVideocamSharp } from "react-icons/io5";
 import { IoVideocamOffSharp } from "react-icons/io5";
 import { IoCall } from "react-icons/io5";
 import { MdAddIcCall } from "react-icons/md";
-import { BsBoxArrowInUpLeft } from "react-icons/bs";
-import VideoCallRoom from "../../../interfaces/pages/VideoCallRoom";
-const IndividualVideoTile = ({ user }) => {
+import { BsBoxArrowInUpLeft } from "react-icons/bs"; 
+const IndividualVideoTile = ({ user }:{user:any}) => {
     const [mute, setMute] = useState(true)
     const [speakerMute, setSpeakerMute] = useState(true)
     const [camview, setCamview] = useState(true)

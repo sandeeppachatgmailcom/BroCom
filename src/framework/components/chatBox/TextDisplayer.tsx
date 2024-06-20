@@ -1,7 +1,7 @@
-const TextDisplay = ({ activeUser, user, userChat }) => {
+const TextDisplay = ({ activeUser, user, userChat }:any) => {
     return (
         <>
-            {userChat.map((item,index) => {
+            {userChat.map((item:any,index:any) => {
 
                 return (item.senderId == activeUser.email ? (
                         <div key={index} className="h-auto self-end text-end    flex flex-col rounded-e-none rounded-t-xl rounded-s-xl bg-green-900 bg-opacity-20 justify-end m-1 flex-wrap  p-3 ">

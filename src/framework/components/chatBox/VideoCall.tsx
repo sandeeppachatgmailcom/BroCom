@@ -9,9 +9,8 @@ import { IoVideocamOffSharp } from "react-icons/io5";
 import { IoCall } from "react-icons/io5";
 import { MdAddIcCall } from "react-icons/md";
 import { FaArrowsSpin } from "react-icons/fa6";
-import ReactPlayer from 'react-player'
-import VideoCallRoom from "../../../interfaces/pages/VideoCallRoom";
-import peer from "../../services/peer";
+import ReactPlayer from 'react-player' 
+import peer from "../../services/peer"; 
 import { useSelector } from "react-redux";
 import { Socket } from "socket.io-client";
 const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
@@ -19,13 +18,13 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   const [speakerMute, setSpeakerMute] = useState(true)
   const [camview, setCamview] = useState(0)
   const [call, setCall] = useState(false)
-  const [room, setRoom] = useState(false)
+  
   const activeUser = useSelector((state: any) => state.activeUser.user)
   const [remoteSocketId, setRemoteSocketId] = useState(null);
-  const [myStream, setMyStream] = useState();
+  const [myStream, setMyStream] = useState<any>();
   const [remoteStream, setRemoteStream] = useState();
 
-  const handleUserJoined = useCallback(async ({ email, id, room }) => {
+  const handleUserJoined = useCallback(async ({ email, id, room }:any) => {
      
     setRemoteSocketId(id);
    
@@ -49,7 +48,7 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   };
 
   const handleIncommingCall = useCallback(
-    async ({ from, offer }) => {
+    async ({ from, offer }:any) => {
       setRemoteSocketId(from);
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: mute,
@@ -71,7 +70,7 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   }, [myStream]);
 
   const handleCallAccepted = useCallback(
-    ({ from, ans }) => {
+    ({   ans }:any) => {
       peer.setLocalDescription(ans);
       console.log("Call Accepted!");
       sendStreams();
@@ -92,19 +91,19 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   }, [handleNegoNeeded]);
 
   const handleNegoNeedIncomming = useCallback(
-    async ({ from, offer }) => {
+    async ({ from, offer }:any) => {
       const ans = await peer.getAnswer(offer);
       socket.emit("peer:nego:done", { to: from, ans });
     },
     [socket]
   );
 
-  const handleNegoNeedFinal = useCallback(async ({ ans }) => {
+  const handleNegoNeedFinal = useCallback(async ({ ans }:any) => {
     await peer.setLocalDescription(ans);
   }, []);
 
   useEffect(() => {
-    peer.peer.addEventListener("track", async (ev) => {
+    peer.peer.addEventListener("track", async (ev:any) => {
       const remoteStream = ev.streams;
       
       setRemoteStream(remoteStream[0]);
@@ -116,12 +115,12 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   useEffect(() => {
    
     if (!user.activeCall) {
-      setRoom(activeUser.email)
+       
       socket.emit("room:join", { email: activeUser.email, room: activeUser.email, to: user.email });
 
     }
     else {
-      setRoom(user.email)
+      
       socket.emit("room:join", { email: activeUser.email, room: user.email, to: user.email });
     }
     
@@ -154,7 +153,7 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
   return (
     <div className="h-[100%]   w-full rounded-xl border-8 border-gray-500 border-opacity-20 flex flex-col">
       {/* {room ? <VideoCallRoom user={user} onClose={setRoom} /> : ''} */}
-      <div className="relative flex w-full flex-col  rounded-xl    items-center overflow-scroll    bg-blue-950 justify-center     bg-opacity-5   h-[100%]">
+      <div className="relative flex w-full flex-col  rounded-xl    items-center overflow-scroll    justify-center     bg-opacity-5   h-[100%]">
         {/* <button onClick={() => setRoom(true)} className="flex relative text-black items-start     w-full   cursor-pointer  justify-start p-3  bg-opacity-35 m-1  h-[5%]">
                     {!room ? <BsBoxArrowInUpLeft /> : ''}
                 </button> */}
@@ -168,10 +167,10 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
           <>
             {myStream ?
               <div className="flex absolute overflow-hidden start-1 top-1 h-1/4 w-1/4 rounded-xl     m-2  bg-opacity-40">
-                <ReactPlayer  muted={speakerMute}  playing={true} height={'100%'} width={'100%'} muted={false} url={myStream} />
+                <ReactPlayer  muted={speakerMute}  playing={true} height={'100%'} width={'100%'} url={myStream} />
               </div> :
-              <button className="   rounded-xl h-[45%] w-full border-8 mb-2 border-gray-600 border-opacity-25  ">
-                {!activeUser?.profileImage?.length ? <FaUserTie className=" h-[100%] w-[100%] bg-blue-950 bg-opacity-15 text-white-200 border-4 rounded-full border-white  p-2 text-opacity-35" /> : <div className="h-[100%] w-[100%] rounded-xl" style={{ backgroundImage: `url(${activeUser?.profileImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }} />}
+              <button className="   rounded-xl h-[45%] w-full   mb-2 border-gray-600 border-opacity-25  ">
+                {!activeUser?.profileImage?.length ? <FaUserTie className=" h-[100%] w-[100%] bg-blue-950 bg-opacity-15 text-white-200   rounded-full  p-2 text-opacity-35" /> : <div className="h-[95%] w-[50%] rounded-2xl  bg-opacity-25   overflow-hidden  flex  " style={{ backgroundImage: `url(${activeUser?.profileImage})`, backgroundPosition: 'center', backgroundSize: 'contain',backgroundRepeat:'no-repeat' }} />}
               </button>
 
             }
@@ -181,8 +180,8 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
               <div className="flex   w-full overflow-hidden -z-10 absolute h-[100%] rounded-xl p-1   m-2 bg-opacity-40">
                 <ReactPlayer playing={true} height={'100%'} width={'100%'} muted={false} class='rounded-xl'  url={remoteStream} />
               </div> :
-              <button className="   rounded-xl h-[45%] mt-2 w-full  p-1 ">
-                {!user?.profileImage?.length ? <FaUserTie className=" h-[100%]    w-[100%] bg-blue-950 bg-opacity-15 text-white-200 border-4 rounded-full border-white  p-2 text-opacity-35" /> : <div className="h-[100%] w-[100%] rounded-xl" style={{ backgroundImage: `url(${user?.profileImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }} />}
+              <button className="   rounded-xl h-[45%] mt-2 w-full flex items-center  p-1 justify-end ">
+                {!user?.profileImage?.length ? <FaUserTie className=" h-[100%]    w-[50%] bg-blue-950 bg-opacity-15 text-white-200  rounded-full  p-2 text-opacity-35" /> : <div className="h-[100%] w-[50%] bg-gray-300  bg-opacity-25  rounded-2xl" style={{ backgroundImage: `url(${user?.profileImage})`, backgroundPosition: 'center', backgroundSize: 'contain',backgroundRepeat:'no-repeat' }} />}
               </button>
 
             }
@@ -201,7 +200,7 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
                     </div> : ''} */}
         </div>
         <div className="absolute bottom-0 left-0 right-0 flex justify-center space-x-2 p-2 bg-opacity-50 bg-gray-800 rounded-t-xl h-[25%]">
-          <div className=" items-center justify-center flex  rounded-full overflow-hidden  ">
+          <div className=" items-center justify-center flex   rounded-full overflow-hidden  ">
             {mute ? <HiMiniSpeakerWave onClick={() => setMute(!mute)} className=" border-4 ms-1   rounded-full border-blue-400 text-blue-500 w-[100%] h-[100%] p-3" />
               : <HiMiniSpeakerXMark onClick={() => setMute(!mute)} className=" border-4 ms-1   rounded-full border-gray-500 text-gray-500 w-[100%] h-[100%] p-3" />
             }
@@ -224,7 +223,7 @@ const VideoCall = ({ user, socket }: { user: any, socket: Socket }) => {
           </div >
           <div className=" items-center justify-center flex  rounded-full overflow-hidden   ">
             {call && !user.activeCall ? <IoCall onClick={() => setCall(!call)} className="  border-4 ms-1   rounded-full border-blue-400 text-blue-500 w-[100%] h-[100%] p-3" />
-              : !call && !user.activeCall ? <MdAddIcCall onClick={() => setCall(!call)} className=" border-4 ms-1   rounded-full border-gray-500  border-gray-500 text-gray-500 w-[100%] h-[100%] p-3" />
+              : !call && !user.activeCall ? <MdAddIcCall onClick={() => setCall(!call)} className=" border-4 ms-1   rounded-full   border-gray-500 text-gray-500 w-[100%] h-[100%] p-3" />
                 : ''
             }
           </div >

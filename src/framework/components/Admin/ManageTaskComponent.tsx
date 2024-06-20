@@ -1,4 +1,3 @@
-import { dividerClasses } from "@mui/material"
 import useGetActiveTask from "../../../useCases/useGetActiveTask"
 import Task_Comp from "./TaskComponent"
 import { Task_model } from "../../../entity/response/task_model"
@@ -6,7 +5,7 @@ import { useEffect, useState } from "react"
 
 
 const ManageTaskComponent :React.FC = ()=>{
-    let tempTask  = useGetActiveTask()
+    let tempTask:any  = useGetActiveTask()
     const [taskList,setTaskList] = useState([])
     const [page,setPage] = useState(0)
     const [skip,setSkipt] = useState(0)

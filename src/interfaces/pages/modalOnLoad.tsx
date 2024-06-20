@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal_Component } from '../../entity/components/common/Modal';
 
 
-const Modal:React.FC<Modal_Component>= ({ isOpen, onClose, children }) => {
+const Modal:React.FC<Modal_Component>= ({   children }) => {
   const [count,setCount] = useState(0) 
 
   setInterval(()=>{

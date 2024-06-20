@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const usedesignationWiseEventProgress = ()=>{
     const [result, setResult] = useState();
-    const user = useSelector((state)=>state.activeUser.user)
+    const user = useSelector((state:any)=>state.activeUser.user)
     
     const fetchResult = async ()=>{
         const result =await axiosApi.post(trainerApi.designationWiseEventProgress,{designation:user.designation})

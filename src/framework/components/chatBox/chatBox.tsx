@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {   useCallback, useEffect, useRef, useState } from "react";
 import { MdVideoCameraBack, MdOnlinePrediction } from "react-icons/md";
-import { IoChatbubbleEllipsesOutline, IoCall } from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaSearchengin } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import axiosApi from "../../api/axios";
@@ -14,44 +14,37 @@ import { FcVideoCall } from "react-icons/fc";
 import { toggleMultiUser } from "../../ReduxStore/multipleUser";
 
   const ChatBox = ({ setStudent }: any) => {
-  const multipleUser = useSelector((state) => state.multiUser.show)
-  const [videoCallMessage, setVideoCallMessage] = useState()
-  const [real, setReal] = useState([]);
+  const multipleUser = useSelector((state:any) => state.multiUser.show)
+   
+  const [real, setReal] = useState<any>([]);
   const [conversation, setConversation] = useState({});
   const activeUser = useSelector((state: any) => state.activeUser.user);
-  const [videoCallList, setVideoCallList] = useState([])
-  const [user, setUser] = useState({});
+  const [videoCallList ] = useState([])
+  const [user, setUser] = useState<any>({});
   const [searchText, setSearchText] = useState('');
-  const searchInput = useRef();
+  const searchInput = useRef<HTMLDivElement|any>();
   const contact = useContactList(searchText);
   const [usersList, setUsersList] = useState([])
   const [initialSocket, setInitialSocket] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const dispatch = useDispatch();
   const [selectedUser, setSelectedUser] = useState('')
- 
-  const [incomingCall, setIncominCall] = useState(false)
-  const [remoteOffer,setRemoteOffer] = useState()
-  const [activeCalls,setActiveCalls] = useState([]) 
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [connected, setConnected] = useState<boolean>(false);
-  const [socketId, setSocketId] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  
+  const [activeCalls,setActiveCalls] = useState<any>([]) 
+  const [socket, setSocket] = useState<Socket | null|any>(null);
+   
  
   useEffect(() => {
     const newSocket = io("http://localhost:4000")  
     setSocket(newSocket);
     newSocket.on('connect', () => {
-      setConnected(true);
-      setSocketId(newSocket.id);
-      setError(null);
+       
     });
     newSocket.on('disconnect', () => {
-      setConnected(false);
-      setSocketId(null);
+       
     });
     newSocket.on('connect_error', (err: Error) => {
-      setError(err.message);
+       console.log(err)
     });
     setSocket(newSocket);
     return () => {
@@ -63,9 +56,9 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   }, []);
   // always update the list of onlineuserd , ueseeffect will work when ever change founde the varibales in dependancy
   useEffect(() => {
-    const userList = contact?.map(user => ({
+    const userList:any = contact?.map((user:any) => ({
       ...user,
-      online: onlineUsers.some(online => user.email === online.userId)
+      online: onlineUsers.some((online:any )=> user.email === online.userId)
     })).sort((a, b) => b.online - a.online);
      
     if (userList?.length) {
@@ -74,16 +67,16 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   }, [onlineUsers, contact, socket]);
 
   useEffect(() => {
-    const tempUserList = usersList.map((user) => {
+    const tempUserList:any = usersList.map((user:any) => {
       return {
         ...user,
-        activeCall: activeCalls.some((active) => active.from === user.email),
-        offer: activeCalls.filter((active) =>  active.from === user.email ?active.offer:null   )[0]?.offer 
+        activeCall: activeCalls.some((active:any) => active.from === user.email),
+        offer: activeCalls.filter((active:any) =>  active.from === user.email ?active.offer:null   )[0]?.offer 
       };
     });
     
   setUsersList(tempUserList);
-     activeCalls.map((activeCall)=>{
+     activeCalls.map((activeCall:any)=>{
       
       if(activeCall.from === user.email){
         setUser({
@@ -99,9 +92,9 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
 
   //updating users list to identify call waiting 
   useEffect(() => {
-    const userList = usersList.map((user) => ({
+    const userList:any = usersList.map((user:any) => ({
       ...user,
-      incomingCall: videoCallList.some(caller => user.email === caller.email),
+      incomingCall: videoCallList.some((caller:any) => user.email === caller.email),
     }));
 
     setUsersList(userList);
@@ -127,32 +120,19 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   };
   const handleSendMessage = (message:any) => {
     if (message.receiverId === activeUser.email) {
-      setReal(prevReal => [message, ...prevReal]);
+      setReal( (prevReal:any) => [message, ...prevReal]);
     }
   };
   
-   const endCurrentCall = (message:any) => {
-
-    const result = usersList.filter((item) => item.email == message.senderId)
-    const calledUser = result[0];
-     
-    setUser(calledUser)
-    setIncominCall(false)
-  }
+    
   const checkOnline = (email:any) => {
-    return onlineUsers.some(online => email === online.userId);
+    return onlineUsers.some((online:any) => email === online.userId);
   };
   const endCall = (message:any) => {
     socket.emit("endCall", message)
   }
-  const giveCallResPonce = (offer,user)=>{
-     
-    socket.emit('CallResPonce',{offer,user})
-  }
-  const handleCallResponce = (message)=>{
-     
-    setRemoteOffer(message)
-  }
+   
+    
   const sendMessage = (message:any) => {
     socket?.emit("send-message", message);
   };
@@ -178,8 +158,8 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
     setSearchText(value);
   };
   const handleIncommingCall = useCallback(
-    async ({ from, offer }) => {
-      const temp = activeCalls
+    async ({ from, offer }:{ from:any, offer:any }) => {
+      const temp:any = activeCalls
       temp.push({from,offer}); 
       setActiveCalls([...temp])   
        
@@ -230,7 +210,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
           </div>
           <div className="border mt-2 border-opacity-20 border-gray-500 p-1 rounded-xl overflow-scroll h-[30%]">
 
-            {usersList?.map((item) => (
+            {usersList?.map((item:any) => (
               <div key={item?.email}  onClick={() => { item.firstName === user.firstName ? setUser({}) : getConversation(item?.email); setUser(item); setSelectedUser(item?.email); item.role == 'student' && activeUser.role != 'student' ? setStudent({ status: true, user: item?.email }) : setStudent({ status: false, user: item?.email }) }} className={`${!checkOnline(item?.email) ? 'text-opacity-50' : ''} rounded-xl cursor-pointer bg-opacity-30 ${item.email == selectedUser ? 'bg-blue-400' : 'bg-gray-500 bg-opacity-5 '} rounded-sm `}>
                 <div className="m-1 h-[50px] w-full items-center flex text-start justify-between">
                   <div className="flex w-7/12 h-[100%]  items-start p-2">
@@ -258,7 +238,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
       <div className="h-[60%]   mt-5 overflow-scroll border border-opacity-10 p-1 border-gray-500 rounded-xl bg-opacity-15">
 
         {Object.keys(user)?.length ?
-          <SingleChat socket={socket} giveCallResPonce={giveCallResPonce}  remoteStreamOffer ={remoteOffer} videoCallMessage={videoCallMessage} incomingCall={incomingCall} onChange={setReal} endCall={endCall} startCall={dialACall} sendMessage={sendMessage} chatHead={conversation} user={user} userChat={real} />
+          <SingleChat socket={socket}       onChange={setReal} endCall={endCall} startCall={dialACall} sendMessage={sendMessage} chatHead={conversation} user={user} userChat={real} />
           : ''}
       </div>
     </div>

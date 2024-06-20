@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import   { useEffect, useState } from 'react';
 type props = any
 const ButtonSwitch = ({name, value, onChange }:props) => {
   const [stateValue, setStateValue] = useState(value);

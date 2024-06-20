@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { PropTask_model, Task_Component } from "../../../entity/components/admin/task_Component"
+import  { useEffect, useState } from "react"
 import DropdownMenu from "../utilComponents/DropdownMenu"
 import { enumtaskTypes } from "../../../entity/constants/enum"
 import useEnumToArray from "../../../useCases/useEnumToarray"
 import {  Switch } from "@mui/material"
-import { formatDate } from "@fullcalendar/core/index.js"
 import { Task_model } from "../../../entity/response/task_model"
 import axiosApi from "../../api/axios"
 import { adminApis } from "../../../entity/constants/api"
@@ -16,21 +14,21 @@ import useGetDesignation from "../../../useCases/useGetDesignation"
 import { DesignationModel } from "../../../entity/response/designation_model"
 import { ToastContainer, toast } from "react-toastify"
 
-const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
+const Task_Comp = ({selectedTask,onChange,index}:{selectedTask:any,onChange:any,index:any})=>{
     const [postPone,setPostpone] = useState(0)
     const enumTask = useEnumToArray(enumtaskTypes)
-    const tempTask:Task_model[] = useGetActiveTask()
-    const programs:Event_Model[]  = useGetActivePrograms()
-    const designation :[]= useGetDesignation()
+    const tempTask:Task_model[]|any = useGetActiveTask()
+    const programs:Event_Model[]|any  = useGetActivePrograms()
+    const designation :[]|any= useGetDesignation()
     const combDesignation = designation?.map((item:DesignationModel)=>{
         return {id:item.id,name:item.Designation}
     }) 
 
-    const task = tempTask?.map((task)=>{
+    const task = tempTask?.map((task:any)=>{
         return  {name:task.taskName,id:task.taskId} 
     })
 
-    const programsList = programs?.map((item)=>{
+    const programsList = programs?.map((item:any)=>{
         return  {name:item.eventName,id:item.eventId}
     })
 
@@ -52,7 +50,7 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
         Validation:false,
     }
     
-    const [formData,setFormData] = useState<Task_model>(blank)
+    const [formData,setFormData] = useState<Task_model|any>(blank)
     const tempList = new Set(formData?.associatedPrograms)  
     const[hang,setHang] = useState(false)
     useEffect(()=>{
@@ -87,7 +85,7 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
     }
      
 
-    const validateTask = (task:Task_model)=>{
+    const validateTask = (task:Task_model|any)=>{
         console.log(task.validateBy,task )
         const DoesNotIncludes = ['','Select','select','validateBy',"nextTastId"]
             if(task.Validation && DoesNotIncludes.includes(task?.validateBy.trim() as string) ) return {message:'Assign validator designation' ,status:false} 
@@ -115,7 +113,7 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
                 
         
     } 
-    const handleRecurringProgramList = (programid)=>{
+    const handleRecurringProgramList = (programid:any)=>{
          
         if(tempList.has(programid)) tempList.delete(programid)
         else tempList.add(programid) 
@@ -129,7 +127,7 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
         setFormData(blank)
     },[])
 
-    const handleSingleTermProgramList = (programid)=>{
+    const handleSingleTermProgramList = (programid:any)=>{
          
         if(tempList.has(programid)) tempList.delete(programid)
         else {
@@ -218,12 +216,12 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
             <div className=" block bg-opacity-5    m-2 ">
                     <h1 className="w-2/6" >ASSOCIATED PROGRAMS  </h1> 
                     {formData?.repeat ?<div className="flex flex-wrap  w-full overflow-scroll    rounded-md shadow-inner">
-                        {programsList?.map((program )=>{
+                        {programsList?.map((program :any )=>{
                             
                             return <div onClick={()=>handleRecurringProgramList(program.id)}  className={`${tempList.has(program.id)?'bg-blue-400 font-semibold bg-opacity-55  text-white':'text-blue-500 bg-gray-500 bg-opacity-15   border-blue-500' }   cursor-pointer    m-1 rounded-full p-3 text-center `} >{program.name?.toUpperCase()}</div> 
                         })}   
                     </div> :<div className="flex flex-wrap  overflow-scroll   rounded-md shadow-inner">
-                        {programsList?.map((program )=>{
+                        {programsList?.map((program:any )=>{
                             
                             return <div onClick={()=>handleSingleTermProgramList(program.id)}  className={`${tempList.has(program.id)?'bg-blue-400 font-semibold bg-opacity-55  text-white':'text-blue-500 bg-gray-500 bg-opacity-15   ' }    cursor-pointer    m-1 rounded-full p-3 text-center `} >{program.name?.toUpperCase()}</div> 
                         })}   
@@ -255,8 +253,8 @@ const Task_Comp:React.FC  = ({selectedTask,onChange,index})=>{
     )
 }
 
-
 Task_Comp.prototype = {
     
 }
+
 export  default Task_Comp

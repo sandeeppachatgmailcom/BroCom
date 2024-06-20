@@ -6,19 +6,16 @@ import TrainerMenuPanel from "../../framework/components/trainer/TrainerMenuPane
 import PendingEvents from "../../framework/components/trainer/PendingEvents";
 import axiosApi from "../../framework/api/axios";
 import { trainerApi, utilityApis } from "../../entity/constants/api";
-import { TrainerHome_Page } from "../../entity/pages/TrainerHomePage";
+import { TrainerHome_Page } from "../../entity/pages/trainerHomePage";
 const TrainelazyrDashBoard =lazy(()=>import ("../../framework/components/trainer/TrainerDashBoard")) 
 const StudentLazyDashBoard = lazy(()=> import("../../framework/components/student/StudentHistory"))
-
-
-
 import 'react-calendar/dist/Calendar.css';
-import MyCalender from "../../framework/components/trainer/MyCalender";
 import useGetLogin from "../../useCases/useGetLogin"; 
+
 
 const TrainerHomePage = (_props: TrainerHome_Page) => {
     useGetLogin('manGrowtrainer')
-    const [studentDashBoard,setStudentDashBoard] = useState({})
+    const [studentDashBoard,setStudentDashBoard] = useState<any>({})
     const darkTheme = useSelector((state: any) => state.theme)
     const user = useSelector((state: any) => state.activeUser.user)
     const [pending, setPending] = useState([])
@@ -30,7 +27,7 @@ const TrainerHomePage = (_props: TrainerHome_Page) => {
     
       
    
-    const [value, onChange] = useState(new Date());
+    
     useEffect(() => {
     }, [darkTheme])
     const divlign = ' rounded  mt-1 '
@@ -71,19 +68,19 @@ const TrainerHomePage = (_props: TrainerHome_Page) => {
             setPending(fullMenu)
         }
         else if (seletedMenu === 'pending') {
-            const templist = fullMenu?.filter((item) => {
+            const templist = fullMenu?.filter((item:any) => {
                 if (!item.ScheduledTaskID && !item.verified) return item
             })
             setPending(templist)
         }
         else if (seletedMenu == 'Approval') {
-            const templist = fullMenu?.filter((item) => {
+            const templist = fullMenu?.filter((item:any) => {
                 if (item?.type == 'submission') return item
             })
             setPending(templist)
         }
         else if (seletedMenu == 'rate') {
-            const templist = fullMenu?.filter((item) => {
+            const templist = fullMenu?.filter((item:any) => {
                 if (item?.type == 'taskCreation') return item
             })
             setPending(templist)
@@ -126,7 +123,7 @@ const TrainerHomePage = (_props: TrainerHome_Page) => {
                     </div>
                     :<div className={`flex flex-col    w-full  overflow-y-scroll h-[85%]   overflow-x-hidden rounded-xl    xl:mt-2 `}>
                         <Suspense fallback={<div>Loading......</div>}>
-                            {studentDashBoard.status? <StudentLazyDashBoard onChane={setStudentDashBoard} useremail = {studentDashBoard.user}/> : <TrainelazyrDashBoard/>}
+                            {studentDashBoard.status? <StudentLazyDashBoard   useremail = {studentDashBoard.user}/> : <TrainelazyrDashBoard/>}
                         </Suspense>
                     </div>
                 }

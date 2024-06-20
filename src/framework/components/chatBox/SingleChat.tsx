@@ -1,9 +1,7 @@
 
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { IoCall } from "react-icons/io5";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5"; 
 import { MdVideoCameraBack } from "react-icons/md";
-import { useSelector } from "react-redux";
-import { io } from 'socket.io-client'
+import { useSelector } from "react-redux"; 
 import { useEffect, useState } from "react";
 import { IoSend } from "react-icons/io5";
 import { UserEntity_Model } from "../../../entity/response/userModel";
@@ -11,11 +9,10 @@ import axiosApi from "../../api/axios";
 import { chatApi } from "../../../entity/constants/api";
 import { memo } from 'react'; 
 import VideoCall from "./VideoCall";
-import TextDisplay from "./TextDisplayer";
-import VideoCallPeerjs from "./videoCallPeerjs";
-const tempSingleChat = ({socket, remoteStreamOffer, giveCallResPonce,videoCallMessage ,onChange, sendMessage, user, userChat,incomingCall, chatHead,endCall , startCall }: { onChange: () => {}, sendMessage: (message: {}) => {}, chatHead: {}, user: {}, userChat: object[] }) => {
-    const activeUser: UserEntity_Model = useSelector((state) => state.activeUser.user)
-    const [data, setData] = useState([])
+import TextDisplay from "./TextDisplayer"; 
+const tempSingleChat = ({socket,onChange, sendMessage, user, userChat, chatHead }: {startCall:any ,endCall:any , socket :any, onChange:any, sendMessage:any, chatHead:any, user:any, userChat: object[] }) => {
+    const activeUser: UserEntity_Model = useSelector((state:any) => state.activeUser.user)
+    const [data, setData] = useState<any>([])
     const [videoCall,setVideoCall] = useState(false)
     const [newData, setNewData] = useState({
         senderMessage: '',
@@ -64,28 +61,7 @@ const tempSingleChat = ({socket, remoteStreamOffer, giveCallResPonce,videoCallMe
             })
         }
     }
-    const dialCall = (offer,stream)=>{
-        const data ={
-            receiverId:user?.email,
-            senderId:activeUser.email,
-            message:'',
-            recievedStatus:false,
-            sendCallStatus:true,
-        }
      
-        startCall({data,stream,offer})
-    }
-
-    const endTheCall = ()=>{
-        const data ={
-            receiverId:user?.email,
-            senderId:activeUser.email,
-            message:'',
-            recievedStatus:false,
-            sendCallStatus:false,
-        }
-        endCall(data)
-    }
 
     const handleChage = (e: any) => {
         const { name, value } = e.target;

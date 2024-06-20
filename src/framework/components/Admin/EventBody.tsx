@@ -3,13 +3,12 @@ import { Event_Model } from "../../../entity/response/events"
 import { useSelector } from "react-redux"
 import DropdownMenu from "../utilComponents/DropdownMenu"
 import axiosApi from "../../api/axios"
-import { adminApis, utilityApis } from "../../../entity/constants/api"
+import { adminApis    } from "../../../entity/constants/api"
 import Switch from '@mui/material/Switch';
-import { audienceType, priority, repeat } from "../../../entity/constants/enum"
+import { audienceType,   repeat } from "../../../entity/constants/enum"
 import { ToastContainer, toast } from "react-toastify"
 import useCompareObjects from "../../../useCases/useCompareObjects"
 import { EventBody_Component } from "../../../entity/components/admin/eventBodyComponent"
-import useGetTrainers from "../../../useCases/useGetTrainers"
 import useGetVenue from "../../../useCases/useGetVenue"
 import useEnumToArray from "../../../useCases/useEnumToarray"
 import useGetDesignation from "../../../useCases/useGetDesignation"
@@ -19,9 +18,8 @@ import { DesignationModel } from "../../../entity/response/designation_model"
 
 
 const EventBody =({event,onChange }:EventBody_Component)=>{
-    const [formData,setFormData] = useState<Event_Model|void>()
-    const venue = useGetVenue() 
-    const trainers = useGetTrainers();
+    const [formData,setFormData] = useState<Event_Model|void|any>()
+    const venue = useGetVenue()  
     const dark = useSelector((state:any)=>state.theme.theme)
     const darkText = useSelector((state:any)=>state.theme.inputtext)    
     const enumAudienceType = useEnumToArray(audienceType)
@@ -29,7 +27,7 @@ const EventBody =({event,onChange }:EventBody_Component)=>{
     const [initailState ,setInitialState] = useState<Event_Model|void>()
      
     const compareObject = useCompareObjects(initailState,formData)
-    const designation :[]= useGetDesignation()
+    const designation :any= useGetDesignation()
     const combDesignation = designation?.map((item:DesignationModel)=>{
         return {id:item.id,name:item.Designation}
     }) 

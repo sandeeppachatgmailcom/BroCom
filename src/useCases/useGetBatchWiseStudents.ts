@@ -8,7 +8,6 @@ const useGetBatchWiseStudents = ()=>{
     const [result,setResult] = useState([])
     const fetch =async  ()=>{
         const data = await axiosApi.get(userApi.getBatchWiseStudentsList)
-        console.log(data.data ,'useGetBatchWiseStudents')  
         setResult(data.data)
     }
     useEffect(()=>{

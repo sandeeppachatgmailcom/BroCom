@@ -43,7 +43,7 @@ const appRouter  = createBrowserRouter([
             },
             {
                 path:'/Admin',
-                element:<AdminHomePage ManageTaskComponent ={ManageTaskComponent }    />
+                element:<AdminHomePage     />
             },
             {
                 path:'/Trainer',

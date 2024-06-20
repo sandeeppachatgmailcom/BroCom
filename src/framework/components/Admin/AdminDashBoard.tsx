@@ -16,17 +16,17 @@ const AdminDashBoard =  (_props:any)=>{
       const [batchSummary,setBatchSummary] = useState([])
       const [desiSummary,setDesiSummary] = useState([])
       
-      const tempData :unknown = useWeeklyStudentsDetails()
+      const tempData :any = useWeeklyStudentsDetails()
       const btchSummary = useGetBatchWiseStudents()
       const employeeSummary = useGetDesignationWiseStaffCount()
       
       useEffect(()=>{
-        const data:unknown  = employeeSummary?.map((item:any)=>{ return {name:item.Designation, value:item.staffCount} })
+        const data:any  = employeeSummary?.map((item:any)=>{ return {name:item.Designation, value:item.staffCount} })
         setDesiSummary(data)
       },[employeeSummary])
       
       useEffect(()=>{
-        const data:unknown =  btchSummary?.map((item:unknown)=>{return {name:item._id, value:item.count}} )
+        const data:any =  btchSummary?.map((item:any)=>{return {name:item?._id as string, value:item?.count as number }} )
         setBatchSummary(data)
       },[btchSummary])
       useEffect(()=>{

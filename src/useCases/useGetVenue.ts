@@ -11,7 +11,7 @@ const useGetVenue = ()=>{
     },[])
     const getVenue = async()=>{
         const venues =await axiosApi.get(utilityApis.listAllVenues)
-        console.log(venues.data,'data from front')
+         
         const data =JSON.parse(JSON.stringify(venues.data)).map((item:any)=>{
            return{ name:item.venueName,id:item.venueId}
         })

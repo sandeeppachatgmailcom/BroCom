@@ -6,23 +6,20 @@ import { userApi } from "../../entity/constants/api";
 import { useNavigate } from "react-router-dom";
 
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { login } from "../../framework/ReduxStore/activeUser";
  
 const Role = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const activeUser = useSelector((state)=>state.activeUser.user)
-    const getLogin =async (role)=>{
-        console.log(userApi.getlogin+`/${role}`, '888888888888888')
+    
+    const getLogin =async (role:any)=>{
         const tempuser = await axiosApi.get(userApi.getlogin+`/${role}`) 
-         
         if(tempuser.data.success){
             dispatch(login(tempuser.data))
             if(Object.keys(tempuser.data).length && tempuser.data.otpVerified) navigate(`/${tempuser.data.role}`)
         }
         else{
-            console.log(tempuser.data, 'tempuser.datatempuser.data')
             navigate('/signin')
         }
     }
@@ -31,18 +28,7 @@ const Role = ()=>{
 
     const handleuserRole =async (role:string)=>{
         try {
-            const data = {
-                role:role
-            }
-            
-            console.log(data)
-
-            const verifyRole =await getLogin(role) 
-            console.log(verifyRole,'verifyRole')
-            if(role != verifyRole.data || 'ok' ){
-                console.log(document.cookie.split(';').map((item)=>item.split('=')).filter((token)=>token[0].trim().startsWith('man')))
-                
-            }
+             await getLogin(role) 
         } catch (error) {
             
         }

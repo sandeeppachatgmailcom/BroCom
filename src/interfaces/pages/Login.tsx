@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {   useNavigate } from "react-router-dom";
 import GAuthsignin from "../../framework/components/google/googleAuthSignin";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosApi from "../../framework/api/axios";
 import Modal from "./modalOnLoad";
 import { login } from "../../framework/ReduxStore/activeUser";
-import { userApi } from "../../entity/constants/api";
-import { Login_Page } from "../../entity/pages/login_Page";
-import useHandleRouter from "../../useCases/useHandleRouter";
-import LoginGraph from "../../framework/components/utilComponents/LoginCommon";
-import useGetLogin from "../../useCases/useGetLogin";
+import { userApi } from "../../entity/constants/api";  
+import LoginGraph from "../../framework/components/utilComponents/LoginCommon"; 
 
 
-function Login({role}) {
-  const imagePath = '../src/images/sugc.png'
+function Login( ) {
+   
   const [formData, setFormData] = useState<any>({
     name: '',
     email: '',
@@ -140,7 +137,7 @@ function Login({role}) {
       <ToastContainer />
       {modal ? <Modal /> : ''}
 
-      <div className="xl:flex  block  justify-center hidden xl:w-4/6 opacity-45 items-center w-full overflow-hidden  sm:block h-[70%]    m-2 ">
+      <div className="xl:flex     justify-center hidden xl:w-4/6 opacity-45 items-center w-full overflow-hidden  sm:block h-[70%]    m-2 ">
         <LoginGraph />
 
       </div>

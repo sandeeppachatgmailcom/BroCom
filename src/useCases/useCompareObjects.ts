@@ -1,5 +1,4 @@
 
-import React, { useEffect, useState } from 'react';
 import { DeepObjectComparison_UseCase } from '../entity/useCases/ObjectComparison_UseCase';
 
 const useCompareObjects :DeepObjectComparison_UseCase = (obj1:any, obj2:any) => {
@@ -31,13 +30,6 @@ const useCompareObjects :DeepObjectComparison_UseCase = (obj1:any, obj2:any) => 
     }
 
     return true;  
-    // Dependency array for memoization
-
-  // Update state only when comparison results change
-  
-   
-
-   
 };
 
 export default useCompareObjects;

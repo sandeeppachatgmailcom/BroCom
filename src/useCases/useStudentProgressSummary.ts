@@ -10,7 +10,7 @@ useEffect(()=>{
 },[email])
 const fetch = async ()=>{
     const tempResult = await axiosApi.post( utilityApis.studentsTaskProgressRatio ,{email:email})
-    console.log(tempResult,'tempResulttempResulttempResulttempResult')
+    
     setResult( tempResult?.data)
 }
  

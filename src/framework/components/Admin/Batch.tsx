@@ -64,7 +64,7 @@ const Batch = (props:props) => {
         getTrainers()
         getStudents()
     },[])
-    const [activebatch, setActivebatch] = useState <BatchComponent> (props.activebatchs)
+    const [activebatch, setActivebatch] = useState <BatchComponent | any> (props.activebatchs)
    
     const handleChange = (e:any): void => {
         let { name , value } = e.target;

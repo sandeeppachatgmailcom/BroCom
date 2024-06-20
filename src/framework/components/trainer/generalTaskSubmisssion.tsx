@@ -1,14 +1,10 @@
-import  {  useEffect, useState } from 'react';
- import uploadVideo from '../../services/saveVideo';
+import  {  useEffect  } from 'react'; 
  
 const GeneralTask = (props:any) => {
    useEffect(()=>{
     console.log(props,'props')
    },[props])
-  
    
-   
-  const [capturedValue, setCapturedValue] = useState<string | null>(props.value);
    
   const handleChange = (e:HTMLTextAreaElement)=>{
     props.onChange(e)

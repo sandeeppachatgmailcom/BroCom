@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react"
+import React, { Suspense, lazy, useEffect} from "react"
 import { useSelector } from "react-redux"
 import Profile from "../../framework/components/utilComponents/profile";
  
@@ -11,18 +11,14 @@ import ApproveStaff from "../../framework/components/Admin/StaffApproval";
 import Events from "../../framework/components/Admin/Events";
 import ManageTaskComponent from "../../framework/components/Admin/ManageTaskComponent";
  
-
-import MyCalender from "../../framework/components/trainer/MyCalender";
+ 
 import useGetLogin from "../../useCases/useGetLogin";
-import { useNavigate } from "react-router-dom";
  
 const AdminDashBoard = lazy(() => import('../../framework/components/Admin/AdminDashBoard'))
 
 const AdminHomePage: React.FC = () => {
     const darkTheme = useSelector((state: any) => state.theme)
     const selectedSubMenu = useSelector((state: any) => (state.adminSubMenu.menuName))
-    const activeUser = useSelector((state)=>state.activeUser.user) 
-    const navigate = useNavigate() 
     useGetLogin('manGrowadmin')
     
     useEffect(() => {
