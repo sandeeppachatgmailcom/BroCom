@@ -113,7 +113,7 @@ const validatePassword = (password:string) => {
         <div>
           <h2 className={` ${darkTheme.inputtext} mt-6 text-center text-3xl  `}>Sign up</h2>
         </div>
-        <ToastContainer  closeButton= {false} position='top-left' onClose={()=>{setModal(false);navigate('/signin')}}  />
+        {/* <ToastContainer  closeButton= {false} position='top-left' onClose={()=>{setModal(false);navigate('/signin')}}  /> */}
         
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
