@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux"
-import DropdownMenu from "../utilComponents/DropdownMenu";  
-import { MdOutlineRadioButtonChecked } from "react-icons/md";
+import DropdownMenu from "../utilComponents/DropdownMenu";   
 import {  useEffect, useState } from "react";
 import { BatchComponent } from "../../../entity/response/Batch";
 import { FaSave } from "react-icons/fa";

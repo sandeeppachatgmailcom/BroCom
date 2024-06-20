@@ -10,7 +10,7 @@ const ManageTaskComponent :React.FC = ()=>{
     const [page,setPage] = useState(0)
     const [skip,setSkipt] = useState(0)
     const [menuIndex,setMenuIndex] = useState(0)
-    const [selectItem,setSelectItem] = useState()
+    const [selectItem,setSelectItem] = useState<any>()
     const content = 5
    
     useEffect(()=>{
@@ -38,7 +38,7 @@ const ManageTaskComponent :React.FC = ()=>{
             {taskList && taskList
             .slice(skip, (content*(page+1))+1)
             .map((task: Task_model,index:number) => (
-                 <button onClick={(e)=>{setSelectItem(task);setMenuIndex(e.target.value)}} value={index} className={`  bg-blue-500 bg-opacity-15 shadow-md  h-10 rounded-md m-1 w-full font-semibold`}> {task.taskName?.toUpperCase()} </button> ))
+                 <button onClick={(e:any)=>{setSelectItem(task);setMenuIndex(e.target.value)}} value={index} className={`  bg-blue-500 bg-opacity-15 shadow-md  h-10 rounded-md m-1 w-full font-semibold`}> {task.taskName?.toUpperCase()} </button> ))
             
             } 
             </div>
