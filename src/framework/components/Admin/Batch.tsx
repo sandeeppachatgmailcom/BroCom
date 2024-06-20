@@ -9,6 +9,7 @@ import axiosApi from "../../api/axios";
 import { MdAddHome } from "react-icons/md";
 import { adminApis, utilityApis } from "../../../entity/constants/api";
 import { ToastContainer, toast } from "react-toastify";
+import ButtonSwitch from "../utilComponents/ButtonSwitch";
 type props ={
     activebatchs:BatchComponent
     setActiveBatch:any 
@@ -129,34 +130,8 @@ const Batch = (props:props) => {
                 <div className='w-full flex m-1 h-[60px] p-2 items-center justify-between '>
                     <label className=' w-2/4' htmlFor="">ACTIVE </label>
                     <div className='w-2/4 justify-start flex  align-middle'> 
-                        {activebatch.active ? (
-                            <div className="justify-center flex w-[75px] h-[30px] rounded-full border items-center "> {/* Adjust width, height, and padding here */}
-                            <button
-                                onClick={handleChange}
-                                name="active"
-                                value={!activebatch.active}
-                                className="text-orange-600 flex justify-center rounded rounded-s-full items-center  w-24 h-full "
-                            >
-                                <MdOutlineRadioButtonChecked />
-                            </button>
-                            <button disabled className="flex justify-center bg-blue-600 w-24 h-full items-center    text-white rounded rounded-r-full">
-                                <MdOutlineRadioButtonChecked />
-                            </button>
-                            </div>
-                        ) : (
-                            <div className="justify-center flex w-[75px] h-[30px] rounded-full border items-center   "> {/* Adjust width, height, and padding here */}
-                            <button disabled className="bg-orange-600 flex justify-center items-center  text-gray-100 rounded rounded-s-full w-24 h-full">
-                                <MdOutlineRadioButtonChecked />
-                            </button>
-                            <button     onClick={handleChange}
-                                name="active"
-                                value = {true}
-                                className="text-blue-600 flex justify-center rounded items-center  rounded-r-full w-24 h-full"
-                            >
-                                <MdOutlineRadioButtonChecked />
-                            </button>
-                            </div>
-                        )}
+                        
+                        <ButtonSwitch name ='active'  value={activebatch.active  } onChange={handleChange}  />
                         </div>
                 </div>
                  

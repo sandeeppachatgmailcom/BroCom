@@ -61,13 +61,6 @@ export interface Academic {
     designation?:string;
     submission?:object;
   }
-
-  interface subMission {
-    taskId:string;
-    scheduledTaskId:string;
-    rating:number;
-    feebBack:string;
-    remark:string;
-  }
+ 
   
   

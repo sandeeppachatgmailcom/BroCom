@@ -10,7 +10,7 @@ import { UserEntity_Model } from "../../../entity/response/userModel";
 import useGetDesignation from "../../../useCases/useGetDesignation";
 import { DesignationModel } from "../../../entity/response/designation_model";
 const AdminStaffApproval :React.FC<any> = (props) => {
-    const [formData, setFormData] = useState<UserEntity_Model>({})
+    const [formData, setFormData] = useState<UserEntity_Model | {}>({})
     const batch = useGetBatches()
     const designation :[]= useGetDesignation()
     const combDesignation = designation?.map((item:DesignationModel)=>{
@@ -47,6 +47,8 @@ const AdminStaffApproval :React.FC<any> = (props) => {
         })
     }
 
+
+    
     const handleChange = (e:any): void => {
         let { name , value } = e.target;
         console.log( name , value,'keypress found ')

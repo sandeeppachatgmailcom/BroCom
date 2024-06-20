@@ -9,81 +9,29 @@ import useGetDesignationWiseStaffCount from "../../../useCases/useGetDesignation
 
 
 
+
 const AdminDashBoard =  (_props:any)=>{
-    // const data = [
-    //     {
-    //       name: 'Page A',
-    //       count: 4000,
-    //     },
-    //     {
-    //       name: 'Page B',
-    //       count: 3000,
-    //     },
-    //     {
-    //       name: 'Page C',
-    //       count: 2000,
-    //     },
-    //     {
-    //       name: 'Page D',
-    //       count: 2780,
-    //     },
-    //     {
-    //       name: 'Page E',
-    //       count: 1890,
-    //     },
-    //     {
-    //       name: 'Page F',
-    //       count: 2390,
-    //     },
-    //     {
-    //       name: 'Page G',
-    //       count: 3490,
-    //     },
-    //     {
-    //       name: 'Page H',
-    //       count: 3490,
-    //     },
-    //     {
-    //       name: 'Page i',
-    //       count: 3490,
-    //     },
-    //     {
-    //       name: 'Page J',
-    //       count: 3490,
-    //     },
-    //     {
-    //       name: 'Page K',
-    //       count: 3490,
-    //     },
-    //     {
-    //       name: 'Page L',
-    //       count: 3440,
-    //     },
-    //     {
-    //       name: 'Page M',
-    //       count: 3480,
-    //     },
-    //   ];
+     
       const [data,setData] = useState([])
       const [batchSummary,setBatchSummary] = useState([])
       const [desiSummary,setDesiSummary] = useState([])
       
-      const tempData = useWeeklyStudentsDetails()
+      const tempData :[] = useWeeklyStudentsDetails()
       const btchSummary = useGetBatchWiseStudents()
       const employeeSummary = useGetDesignationWiseStaffCount()
       
       useEffect(()=>{
-        const data  = employeeSummary?.map((item)=>{ return {name:item.Designation, value:item.staffCount} })
+        const data:[]  = employeeSummary?.map((item:any)=>{ return {name:item.Designation, value:item.staffCount} })
         setDesiSummary(data)
       },[employeeSummary])
       
       useEffect(()=>{
-        const data =  btchSummary?.map((item)=>{return {name:item._id, value:item.count}} )
+        const data =  btchSummary?.map((item:any)=>{return {name:item._id, value:item.count}} )
         setBatchSummary(data)
       },[btchSummary])
       useEffect(()=>{
         if(tempData){
-        const temp = tempData?.map((item:any)=>{
+        const temp:any = tempData?.map((item:any)=>{
             return {name:item.Xvalue,count:item.students}
         })
         setData(temp)}

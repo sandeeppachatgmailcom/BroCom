@@ -4,7 +4,7 @@ const ButtonSwitch:React.FC<any> = ({name, value, onChange }) => {
   const [stateValue, setStateValue] = useState(value);
     useEffect(()=>{
       setStateValue(value)
-    },[value])
+    },[value])  
   const handleClick = () => {
     const newValue = !stateValue;
     setStateValue(newValue);

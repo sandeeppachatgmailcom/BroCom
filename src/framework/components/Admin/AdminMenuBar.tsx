@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMenu } from '../../ReduxStore/adminMenu'; 
 import { AdminSubmenu_Component } from '../../../entity/components/admin/subMenuComponent';
-const AdminSubmenu = (props:AdminSubmenu_Component)=>{
+const AdminSubmenu = (_props:AdminSubmenu_Component)=>{
     const [button, setButton] = useState(0)
     const darkTheme = useSelector((state:any)=>state.theme.theme )
     const dispatch = useDispatch()

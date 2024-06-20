@@ -5,7 +5,7 @@ import { BatchComponent } from '../../../entity/response/Batch'
 import axiosApi from '../../api/axios'
 import { utilityApis } from '../../../entity/constants/api'
 import { AdminContent_Component } from '../../../entity/components/admin/adminContentComponent'
-const AdminContent :React.FC<{}> = (props:AdminContent_Component) => {
+const AdminContent :React.FC<{}> = (_props:AdminContent_Component) => {
     const darkTheme = useSelector((state:any ) => state.theme.theme)
     
     const [batch, setBatch] = useState<BatchComponent[]>([])
@@ -48,7 +48,7 @@ const AdminContent :React.FC<{}> = (props:AdminContent_Component) => {
     
 
     return (
-        <div className={`${darkTheme} xl:flex sm:block bg-blue-500 bg-opacity-10 shadow-md border     w-full     rounded-xl`}>
+        <div className={`${darkTheme} xl:flex sm:block bg-blue-500 bg-opacity-10 shadow-md       w-full     rounded-xl`}>
             <div className='xl:w-1/6  m-1 rounded border-r-2 border-gray-500 border-opacity-15  '>
                  
                 <div className='w-full xl:block flex   m-1 rounded sm:flex lg:flex md:flex  sm:flex-wrap flex-wrap ' >

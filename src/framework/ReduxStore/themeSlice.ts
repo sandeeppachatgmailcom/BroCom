@@ -12,7 +12,7 @@ const themeSlice = createSlice({
         inputtext:''
     },
     reducers: {
-        toggleTheme: (state, action: {}) => {
+        toggleTheme: (state, action: {payload:string}) => {
             state.themeDark = action.payload === 'dark'?state.themeDark = true:state.themeDark =false ;
             state.theme = state.themeDark ? state.darkTheme : state.lightTheme;
             state.border = state.themeDark ? 'border-stone-950' : 'border-stone-600';
