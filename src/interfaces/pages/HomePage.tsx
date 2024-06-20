@@ -37,7 +37,7 @@ const HomePage = (_props: Home_Page) => {
                 <div className=" block  overflow-scroll justify-center h-[85%]    rounded-md ">
                 
                 {menu==0 ?<StudentsPending startDate={new Date()} email={activeUser.email} endDate={new Date()} />:''}
-                {menu==2 ?<Gallery startDate={new Date()} email={activeUser.email} endDate={new Date()} />:''}
+                {menu==2 ?<Gallery  />:''}
                 {menu==1 ?<StudentHistory  useremail={activeUser.email} />:''}
                <div className="h-[100px]">
 

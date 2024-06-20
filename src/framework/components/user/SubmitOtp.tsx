@@ -38,16 +38,16 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
         return () => clearTimeout(timerId);
       
     }, [sec, min]);
-    const timeout=()=>{
-       const b =  setTimeout(() => {
-            if(sec) setSec(sec-1)
-            else {
-            setMin(min-1)
-            setSec(60)    
-        }
-        }, 1000);
-        clearInterval(b);
-    }
+    // const timeout=()=>{
+    //    const b =  setTimeout(() => {
+    //         if(sec) setSec(sec-1)
+    //         else {
+    //         setMin(min-1)
+    //         setSec(60)    
+    //     }
+    //     }, 1000);
+    //     clearInterval(b);
+    // }
     const otp1 = useRef<HTMLInputElement | null>(null);
     const otp2 = useRef<HTMLInputElement | null>(null);
     const otp3 = useRef<HTMLInputElement | null>(null);

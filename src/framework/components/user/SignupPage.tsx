@@ -1,6 +1,6 @@
 import  { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GAuth from '../google/Authentication'; 
 import { BsEyeFill } from "react-icons/bs";
 import { BiSolidHide } from "react-icons/bi";
@@ -17,7 +17,7 @@ import { SignupPage_pages } from '../../../entity/pages/signupPage_Pages';
 const SignupPage = (_props:SignupPage_pages) => {
   const [view,setView] = useState('password')
   const [retypeView,setRetypeView] = useState('password')
-  const [margin,setmargin] = useState('flex flex-row  appearance-none rounded-none relative   border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 border-indigo-500 focus:z-10 sm:text-sm  ')
+  const [margin ] = useState('flex flex-row  appearance-none rounded-none relative   border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 border-indigo-500 focus:z-10 sm:text-sm  ')
   const darkTheme = useSelector((state:any)=>state.theme)
   const [password,setPassword] = useState(null)
   const ref = useRef<HTMLDivElement | null>(null);
@@ -80,7 +80,7 @@ const validatePassword = (password:string) => {
     if(formData.email.trim().length)
     {
       setModal(true)
-    const result = await axiosApi.post(userApi.signUp,formData)
+      await axiosApi.post(userApi.signUp,formData)
         .then(response => {
         console.log('Response:', response?.data);
         if(response?.data.success){
@@ -156,7 +156,7 @@ const validatePassword = (password:string) => {
              validatePassword(password).status  
              && formData.email.trim().length>0 
              && formData.name.trim().length >0 
-             && formData.email.includes(['@'])  ?<button onClick={(e)=>{handleSubmit(e)}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+             && formData.email.includes('@')  ?<button onClick={(e)=>{handleSubmit(e)}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Sign up
             </ button>:<button  disabled className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-300 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Sign up

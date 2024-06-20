@@ -144,7 +144,7 @@ const COLORS = [
 ];
 
 const CustomizedContent = (props: any) => {
-  const { root, depth, x, y, width, height, index, colors, name, value } = props;
+  const { root, depth, x, y, width, height, index, colors, name  } = props;
    
 
   return (

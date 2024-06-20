@@ -7,7 +7,7 @@ import PdfPreview from "./pdfViewer";
 import uploadPDF from "../../services/uploadPdf";
 const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onChange  }:ProfileImageBox_Component) => {
     const imageInputRef = useRef<HTMLInputElement | null> (null);
-    const [formData, setFormData] = useState(value);
+    const [formData,  ] = useState(value);
     const [upload,setUpload] =  useState(false)
     const [outData,setOutData] = useState({value:''})
     

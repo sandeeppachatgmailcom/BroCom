@@ -6,9 +6,7 @@ import Login from "../../interfaces/pages/Login";
 import HomePage from "../../interfaces/pages/HomePage";
 import AdminHomePage from "../../interfaces/pages/AdminHomePage";
 import TrainerHomePage from "../../interfaces/pages/TrainerHomePage";
-import ResetCredential from "../../interfaces/pages/ResetCredential";
-import Task_Comp from "../components/Admin/TaskComponent";
-import ManageTaskComponent from "../components/Admin/ManageTaskComponent";
+import ResetCredential from "../../interfaces/pages/ResetCredential"; 
 import Role from "../../interfaces/pages/Role";
 
 const appRouter  = createBrowserRouter([

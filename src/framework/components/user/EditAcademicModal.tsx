@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+ 
 
 import { useDispatch, useSelector } from "react-redux";
 import { FaWindowClose } from "react-icons/fa";
@@ -21,7 +21,7 @@ const EditAcademicModal = (props:any) => {
         }
     }
     const [formData,setFormData]=useState(course)
-    const [activeUser,setActiveUser] =  useState(user)
+    const [activeUser ] =  useState(user)
     
     const handleChange = (e:any)=>{
         const {value,name} = e.target 

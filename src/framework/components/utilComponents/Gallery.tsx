@@ -5,20 +5,19 @@ import UploadPdfDocument from "./pdfUploader"
 
 
 const Gallery = ()=>{
-    const activeUser = useSelector((state)=>state.activeUser.user) 
-    const validationArray = useSelector((state)=>state.validationArray.value)
-    const [images,setImages] = useState([])
-    const [pdf,setPdf] = useState([])
-    const [zoom, setZoom] = useState({});
+    const activeUser = useSelector((state:any)=>state.activeUser.user) 
+    const validationArray = useSelector((state:any)=>state.validationArray.value)
+    const [images,setImages] = useState<any>([])
+    const [zoom, setZoom] = useState<any>({});
 
-    const handleZoom = (index) => {
-        setZoom(prevState => ({
+    const handleZoom = (index:any) => {
+        setZoom((prevState:any)  => ({
             ...prevState,
             [index]: prevState[index] === ' w-full h-[800px]' ? ' w-full h-[400px]' : ' w-full h-[800px]'
         }));
     };
     useEffect(()=>{
-       const OutImageBox = []
+       const OutImageBox:any = []
         
        if(activeUser.submission ){
         Object.keys(activeUser.submission).map((subm)=>{
@@ -43,7 +42,7 @@ const Gallery = ()=>{
     return(
         <div className="grid grid-cols-3 gap-4 p-4">
               
-                {images && images.length > 0 && images.map((image, index) => (
+                {images && images.length > 0 && images.map((image:any, index:number) => (
                     <div 
                         key={index}
                         onClick={() => handleZoom(index)} 

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import ProfileImageBox from "../header/ProfileImageBox" 
 import { Profile_Component } from "../../../entity/components/common/proFileComponent"
 
-const Profile = (props:Profile_Component)=>{
-    const darkTheme = useSelector((state:any) =>state.theme)
+const Profile = (_props:Profile_Component)=>{
     const user = useSelector((state:any)=>state.activeUser.user)
      
     const navigate = useNavigate()
@@ -18,7 +17,7 @@ const Profile = (props:Profile_Component)=>{
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.admin?'Admin':''}</h6>
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.trainer?'Staff':''}</h6>
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.student?'Student':''}</h6>
-                <ProfileImageBox height='200px' changebutton={false} width='200px' imageLink={user.profileImage} onParentChange={()=>{}} />
+                <ProfileImageBox height='200px' changebutton={false} width='200px'    />
            </div>
             <div className=" overflow-hidden ">
             

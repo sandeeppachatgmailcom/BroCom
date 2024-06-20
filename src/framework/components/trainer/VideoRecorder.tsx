@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import   { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
 import { faStop } from '@fortawesome/free-solid-svg-icons';
 import { BsFillFloppyFill } from 'react-icons/bs';
 import uploadVideo from '../../services/saveVideo';
-import { RxVercelLogo } from 'react-icons/rx';
+ 
 
 const VideoRecorder = (props:any) => {
-  const webcamRef = useRef(null);
+  const webcamRef = useRef<any>(null);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
   const [recording, setRecording] = useState(false);
   const [videoChunks, setVideoChunks] = useState<Blob[]>([]);
@@ -73,12 +73,12 @@ const VideoRecorder = (props:any) => {
         const videoBlob = await fetch(capturedVideo).then((r) => r.blob());
         const video = await uploadVideo(videoBlob); // Assume uploadVideo is a function to upload the video
         setCapturedVideo(video);
-        const e = {
-          target: {
-            name: 'videolink',
-            value: video,
-          },
-        };
+        // const e:any = {
+        //   target: {
+        //     name: 'videolink',
+        //     value: video,
+        //   },
+        // };
         setRec(true);
       }
     } catch (error) {

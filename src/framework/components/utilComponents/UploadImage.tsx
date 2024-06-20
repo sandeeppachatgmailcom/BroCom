@@ -1,18 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { FaCamera } from "react-icons/fa6";
-import { useDispatch, useSelector } from "react-redux";
-import UploadImage from "../../services/firebase";
-import axiosApi from "../../api/axios"; 
-import { userApi } from "../../../entity/constants/api"; 
-import { login } from "../../ReduxStore/activeUser";
+import { FaCamera } from "react-icons/fa6"; 
+import UploadImage from "../../services/firebase"; 
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { ProfileImageBox_Component } from "../../../entity/components/common/profileImageBox";
-import { FaExclamation } from "react-icons/fa";
-import { ImZoomIn } from "react-icons/im";
+import { FaExclamation } from "react-icons/fa"; 
 const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onChange  }:ProfileImageBox_Component) => {
     const imageInputRef = useRef<HTMLInputElement | null> (null);
-    const dispatch = useDispatch();
-    const [formData, setFormData] = useState(value);
+     
+    const [formData,  ] = useState(value);
     const [upload,setUpload] =  useState(false)
     const [outData,setOutData] = useState({value:''})
     
