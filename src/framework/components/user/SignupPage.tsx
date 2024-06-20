@@ -1,16 +1,16 @@
 import  { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import GAuth from '../google/Authentication'; 
 import { BsEyeFill } from "react-icons/bs";
 import { BiSolidHide } from "react-icons/bi";
 import axiosApi from '../../api/axios';
-import { userApi } from '../../../entity/constants/api';
-import { ToastContainer, toast } from 'react-toastify';
+import { userApi } from '../../../entity/constants/api'; 
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from '../../../interfaces/pages/modalOnLoad';
 import { FcGoogle } from "react-icons/fc";
 import { SignupPage_pages } from '../../../entity/pages/signupPage_Pages';
+import { toast } from 'react-toastify';
 
 
 
@@ -21,8 +21,7 @@ const SignupPage = (_props:SignupPage_pages) => {
   const darkTheme = useSelector((state:any)=>state.theme)
   const [password,setPassword] = useState(null)
   const ref = useRef<HTMLDivElement | null>(null);
-  const imagePath = '../src/images/sugc.png'
-  const navigate = useNavigate()
+  const imagePath = '../src/images/sugc.png' 
   const [role,setRole] = useState('')
   const [modal,setModal] = useState(false)
   useEffect(()=>{console.log(darkTheme.theme,'test')},[darkTheme])
