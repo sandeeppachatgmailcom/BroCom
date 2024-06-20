@@ -13,7 +13,7 @@ import StudentTask from './StudentTask';
 
 
 const StudentsPending:StudentsPending_Component = ( ) => {
-   const [formData,setFormData] = useState() 
+   const [formData,setFormData] = useState<any>() 
    const user = useSelector((state:any) => state.activeUser.user)
    const endDate = new Date()
    endDate.setDate(endDate.getDate()+30)  

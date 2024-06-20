@@ -1,5 +1,5 @@
 
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie,   Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const COLORS = [
     '#0088FE', // Base color (light blue)
@@ -14,7 +14,7 @@ const COLORS = [
 ];
 
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent  }:any) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -26,7 +26,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     );
 };
 
-const CircleChart = ({ data }) => {
+const CircleChart = ({ data }:any) => {
     console.log(data,'/graphdatamodel')
     return (
         <div className='    rounded-xl  overflow-scroll h-[90%] flex w-full'>
@@ -48,7 +48,7 @@ const CircleChart = ({ data }) => {
                             dataKey="value"
 
                         >
-                            {data?.map((entry, index) => (
+                            {data?.map((_entry:any, index:any) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>

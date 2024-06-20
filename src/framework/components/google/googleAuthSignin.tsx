@@ -7,10 +7,10 @@ import { userApi } from "../../../entity/constants/api";
 import { useDispatch } from 'react-redux';
 import { login } from "../../ReduxStore/activeUser";
 import { GAuthsignin_Component } from "../../../entity/components/google/GAuthsignin";
-const GAuthsignin = (props:GAuthsignin_Component) => {
+const GAuthsignin = (_props:GAuthsignin_Component) => {
     const dispatch = useDispatch() 
     const handleSubmit = async(e:any,formData:any) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log(formData);
         const result = await axiosApi.post(userApi.login,formData)
         .then(response => {

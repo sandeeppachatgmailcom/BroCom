@@ -2,7 +2,7 @@ import { useState } from "react"
 import { TrainerMenuPanel_Component } from "../../../entity/components/trainer/trainerMenuPanel"
 
 const TrainerMenuPanel=(props:TrainerMenuPanel_Component)=>{
-    const [activeTab,setActiveTab] = useState()
+    const [activeTab,setActiveTab] = useState<any>()
     const setSelectedMenu = (menu:string)=>{
         props.setSelectedMenu(menu)
         setActiveTab(menu)

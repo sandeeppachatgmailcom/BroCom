@@ -2,8 +2,7 @@ import { useSelector } from "react-redux"
 import { BsPencilFill } from "react-icons/bs";
 import { BsFillFloppyFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
-import { SetStateAction, useEffect, useRef, useState } from "react";
-import DropdownMenu from "../utilComponents/DropdownMenu";
+import {   useEffect, useRef, useState } from "react"; 
 import axiosApi from "../../api/axios";
 import { trainerApi, } from "../../../entity/constants/api";
 import { Event_Model } from "../../../entity/StateStore/activeUser";
@@ -12,8 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { RxDropdownMenu } from "react-icons/rx";
 import useCompareObjects from "../../../useCases/useCompareObjects";
 import { ImCancelCircle } from "react-icons/im";
-import { PendingEventsComponent } from "../../../entity/components/trainer/pendingEvents";
-import { dividerClasses } from "@mui/material   ";
+import { PendingEventsComponent } from "../../../entity/components/trainer/pendingEvents"; 
 import VoiceRecorder from "./VoiceRecorder";
 import UploadImageDocument from "../utilComponents/UploadImage";
 import UploadPdfDocument from "../utilComponents/pdfUploader";
@@ -21,16 +19,16 @@ import UploadPdfDocument from "../utilComponents/pdfUploader";
 
 
 const PendingEvents = (props: PendingEventsComponent) => {
-        const [formData, setFormData] = useState<Event_Model & { ScheduledTaskID: string }>()
+        const [formData, setFormData] = useState<any | Event_Model & { ScheduledTaskID: string }  >()
         const theme = useSelector((state: any) => state.theme.theme)
-        const user = useSelector((state) => state.activeUser.user)
+        
         const [initialState, setInitialState] = useState<any>()
         const [category, setCategory] = useState<any>({})
-        const [task, setTask] = useState<any>()
-        const longTextRef = useRef()
+      
+        const longTextRef = useRef<any>()
         const [height, setHeight] = useState('100px')
         const [mo, setMo] = useState(false)
-        const [hovertask, setHoverTask] = useState()
+        const [hovertask, setHoverTask] = useState<any>()
         const validationArray = ['writing','listening','reading','Speaking','OneToOne']
         useEffect(() => {
                 console.log(props.pending,'ddd')
@@ -39,13 +37,10 @@ const PendingEvents = (props: PendingEventsComponent) => {
         }, [props.pending])
 
 
-        useEffect(() => {
-                setTask(props.task)
-        }, [props.task])
+      
 
 
-
-        const handleChange = (e) => {
+        const handleChange = (e:any) => {
                 const { name, value } = e.target;
 
                 const temp: any = {
@@ -81,7 +76,7 @@ const PendingEvents = (props: PendingEventsComponent) => {
 
 
                 const updatedMarks = Object.fromEntries(
-                        Object.entries(formData?.mark).map(([key, value]) => {
+                        Object.entries(formData?.mark).map(([key]) => {
 
                                 return [key, key === mark ? true : false]
                         })
@@ -131,7 +126,7 @@ const PendingEvents = (props: PendingEventsComponent) => {
                 }
 
         }
-        const verifyuploadedDocs = async (verified) => {
+        const verifyuploadedDocs = async (verified:any) => {
                 const temp = {
                         ScheduledTaskID: formData?.ScheduledTaskID,
                         taskId: formData?.taskId,
@@ -157,7 +152,7 @@ const PendingEvents = (props: PendingEventsComponent) => {
 
         }
 
-        const buttonColor = {
+        const buttonColor : Record<number,string>    = {
                 0: "bg-blue-400",
                 1: "bg-blue-500",
                 2: "bg-red-400",
@@ -239,7 +234,7 @@ const PendingEvents = (props: PendingEventsComponent) => {
                                                 <div className="flex w-4/6 ">
                                                         <div className="flex w-full ">
                                                                 {formData?.matchedTasks ? <div>
-                                                                        {formData?.matchedTasks?.map((task) => {
+                                                                        {formData?.matchedTasks?.map((task:any) => {
                                                                                 return <button onMouseLeave={() => { setMo(false) }} onMouseOver={() => { setMo(true); setHoverTask(task) }} className={` hover:transform-cpu align-text-bottom overflow-hidden  hover:transition-shadow tra text-center rounded-full h-10 p-2 m-1 border border-gray-400 border-opacity-55 `}>
                                                                                         {task.taskName}
                                                                                         <div> {task.taskDiscription} </div>
@@ -293,7 +288,7 @@ const PendingEvents = (props: PendingEventsComponent) => {
 
                                                         {
                                                                 formData?.mark ? Object.keys(formData?.mark).map((key, index: number) => {
-                                                                        return <button onClick={(e) => { updateMark(key) }} name={key} className={`${formData?.mark[key] ? 'bg-opacity-1' : 'bg-opacity-15'} m-1 text-white h-10 text-2xl ${buttonColor[index]}  w-10 hover:text-5xl rounded-md`} type="button"> {key} </button>
+                                                                        return <button onClick={( ) => { updateMark(key) }} name={key} className={`${formData?.mark[key] ? 'bg-opacity-1' : 'bg-opacity-15'} m-1 text-white h-10 text-2xl ${buttonColor[index]}  w-10 hover:text-5xl rounded-md`} type="button"> {key} </button>
                                                                 }) : ''
                                                         }
 

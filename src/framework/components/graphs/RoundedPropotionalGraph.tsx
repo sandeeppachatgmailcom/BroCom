@@ -1,12 +1,6 @@
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink','blue','orange','gray','green','violet','indigo', '#00C49F', '#FFBB28' ,'pink','blue','orange','gray','green','violet', '#FF8042', 'red', 'pink','blue','orange','gray','green','violet', ];
-const data = [
-  {
-    name: 'Page A',
-    count: 4000,
-  },
-  
-];
+ 
 
 const getPath = (x:any, y:any, width:any, height:any) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
@@ -21,7 +15,7 @@ const TriangleBar = (props:any) => {
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
-export default function RoundedPropotionalGraph({data}) {
+export default function RoundedPropotionalGraph({data}:any) {
   return (
     <div className='flex w-full   p-2 justify-center items-center'>
         <BarChart
@@ -39,7 +33,7 @@ export default function RoundedPropotionalGraph({data}) {
       <XAxis dataKey="name" />
       <YAxis />
       <Bar dataKey="count" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-        {data.map((entry, index) => (
+        {data.map((_entry:any, index:any) => (
           <Cell key={`cell-${index}`} fill={colors[index % 20]} />
         ))}
       </Bar>

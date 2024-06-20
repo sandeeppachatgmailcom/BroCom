@@ -92,7 +92,7 @@ const renderActiveShape = (props: any) => {
 export default function CircleChartimport() {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
-    (_, index) => {
+    (_i:any, index:any) => {
       setActiveIndex(index);
     },
     [setActiveIndex]

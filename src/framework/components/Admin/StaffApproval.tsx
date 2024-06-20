@@ -5,12 +5,13 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { adminApis } from "../../../entity/constants/api";
 import { ApproveStaff_Model } from "../../../entity/components/admin/ApproveStaffComponent";
 import useGetActiveUsers from "../../../useCases/useGetActiveUsers";
+import { UserEntity_Model } from "../../../entity/response/userModel";
 const ApproveStaff = (_props:ApproveStaff_Model)=>{
     //const [user,setUser ]= useState([])
     const [pageCount,setPageCount] = useState(1)
     const [menu,setMenu] = useState(0)
     const[selectedStaff,setSelectedStaff] = useState()
-    const user = useGetActiveUsers()
+    const user :UserEntity_Model[] = useGetActiveUsers()||[]
 // const getUsers = async ()=>{
 //     const user = await axiosApi.get(adminApis.listAllstaffpendingApprovals) 
 //         console.log(user?.data,'helo users welcome to approval page')
@@ -29,7 +30,7 @@ const deleteProfile=async (item:any)=>{
     }
     const deleted =  data?.deleted? await axiosApi.post(adminApis.approveStaff, data):''
     console.log(deleted,'deleteddeleteddeleted')
-    await  getUsers();
+   // await  getUsers();
 }
 
 

@@ -8,15 +8,15 @@ import usedesignationWiseEventProgress from "../../../useCases/usedesignationWis
 
 
 const TrainerDashBoard = ()=>{
-const batchData:[] = useGetTrainerBasedBatchSummary()
+const batchData:any = useGetTrainerBasedBatchSummary()
 const weeklySummary = useWeeklyStudentsDetails()
-const TaskProgress:[] = usedesignationWiseEventProgress()
-const [batches,setBatches] = useState({})
+const TaskProgress:any = usedesignationWiseEventProgress()
+const [batches,setBatches] = useState<any>({})
 const [progress,setProgress] =useState([])
 
 useEffect(()=>{
    
-    const data =  TaskProgress?.map((task)=>{
+    const data =  TaskProgress?.map((task:any)=>{
         return {Xvalue:task.eventName + task.scheduledDate.split('T')[0],students:(task.attendees.length ) *100}
     })
     setProgress(data)
@@ -24,13 +24,13 @@ useEffect(()=>{
 
 useEffect(()=>{
      
-    let allbatches = {}
-    batchData?.map((item)=>{
+    let allbatches:any = {}
+    batchData?.map((item:any)=>{
         const batchName = item.batchName ;
         allbatches[batchName]={}  
         allbatches[batchName].student = item?.students?.length
-        const weekSum = new Set()
-        item?.students?.map((student) => {
+        const weekSum:any = new Set()
+        item?.students?.map((student:any) => {
             if (!weekSum.has(student.week) ) {
              
               weekSum.add({ name: student.week, value: 1 });
