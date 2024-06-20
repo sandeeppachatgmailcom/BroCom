@@ -5,7 +5,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { adminApis } from "../../../entity/constants/api";
 import { ApproveStaff_Model } from "../../../entity/components/admin/ApproveStaffComponent";
 import useGetActiveUsers from "../../../useCases/useGetActiveUsers";
-const ApproveStaff = (props:ApproveStaff_Model)=>{
+const ApproveStaff = (_props:ApproveStaff_Model)=>{
     //const [user,setUser ]= useState([])
     const [pageCount,setPageCount] = useState(1)
     const [menu,setMenu] = useState(0)
