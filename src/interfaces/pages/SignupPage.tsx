@@ -1,6 +1,6 @@
 import  { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import GAuth from '../../framework/components/google/Authentication'; 
 import { BsEyeFill } from "react-icons/bs";
 import { BiSolidHide } from "react-icons/bi";
@@ -21,7 +21,7 @@ const SignUp = (_props:SignupPage_pages) => {
   const darkTheme = useSelector((state:any)=>state.theme)
   const [password,setPassword] = useState(null)
   const ref = useRef<HTMLDivElement | null>(null);
-  const navigate = useNavigate()
+  
   const [role,setRole] = useState('')
   const [modal,setModal] = useState(false)
   useEffect(()=>{console.log(darkTheme.theme,'test')},[darkTheme])
@@ -113,7 +113,7 @@ const validatePassword = (password:string) => {
         <div>
           <h2 className={` ${darkTheme.inputtext} mt-6 text-center text-3xl  `}>Sign up</h2>
         </div>
-        {/* <ToastContainer  closeButton= {false} position='top-left' onClose={()=>{setModal(false);navigate('/signin')}}  /> */}
+          <ToastContainer  />  
         
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
