@@ -34,10 +34,10 @@ const ProfileImageBox = ({ height, width, changebutton }:ProfileImageBox_Compone
 
     return (
         <div className="w-full h-100 flex justify-center">
-            <div style={{ height: height, width: width }} className="relative bg-gray-400 rounded-full w-20 h-20 overflow-hidden">
+            <div className={`relative bg-gray-400  ${height} ${width} rounded-full    overflow-hidden`}>
                 <input ref={imageInputRef} onChange={(e) => uploadImage(e)} type="file" hidden name="profileImage" id="" />
                  
-                    <div className="h-[100%] w-[100%] rounded-full" style={{ backgroundImage: `url(${formData.profileImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }} />
+                    <div className="h-[100%] w-[100%] border-opacity-40 border-8 border-blue-900 rounded-full" style={{ backgroundImage: `url(${formData.profileImage})`, backgroundPosition: 'center', backgroundSize: 'cover' }} />
                  
                 {changebutton? <button className="absolute bottom-[20%] text-white right-[20%] " onClick={() => {
                     imageInputRef?.current?.click();

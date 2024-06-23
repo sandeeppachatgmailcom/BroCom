@@ -16,7 +16,6 @@ function Login( ) {
   const [formData, setFormData] = useState<any>({
     name: '',
     email: '',
-
     type: '',
     googleAuth: false
   })

@@ -17,7 +17,7 @@ const Profile = (_props:Profile_Component)=>{
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.admin?'Admin':''}</h6>
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.trainer?'Staff':''}</h6>
                 <h6 className="font-bold text-2xl text-orange-500 ">{user?.student?'Student':''}</h6>
-                <ProfileImageBox height='200px' changebutton={false} width='200px'    />
+                <ProfileImageBox changebutton={false} height='h-[200px]' width='w-[200px]' />
            </div>
             <div className=" overflow-hidden ">
             

@@ -14,7 +14,8 @@ export const userApi: UserApi_route = {
     forgotPassword: '/auth/forgotPassword',
     getSubmissionDetails:'/auth/getSubmissionDetails',
     getBatchWiseStudentsList: '/auth/getBatchWiseStudentsList',
-    getDesignationWiseStaffList:'/auth/getDesignationWiseStaffList'
+    getDesignationWiseStaffList:'/auth/getDesignationWiseStaffList',
+    applyPromocode:'/auth/applyPromoCode', 
     
 };
 

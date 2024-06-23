@@ -19,14 +19,13 @@ const StudentTask = (props: any) => {
         const [selectedTask,setSelectedTask] = useState()
         const [height,setHeight] = useState('h-[100px]')
         const [studentSubMission,setStudentSubmission] = useState<any>({})
+        const theme = useSelector((state: any) => state.theme.theme)
         useEffect(() => {
                 setFormData(props.pending) 
         }, [props.pendings])
-
         useEffect(()=>{
                 setTask(props.task)
         },[props.task])
-
         useEffect(()=>{
                 console.log(formData,'forData')
         },[height])
@@ -34,15 +33,6 @@ const StudentTask = (props: any) => {
             user.submission? setStudentSubmission(user.submission):setStudentSubmission({})      
         },[user])
 
-        useEffect(()=>{
-                console.log(selectedTask,'selectedTaskselectedTask')
-        },[selectedTask])
-
-
-        
-        
-        
-        
         const handleChange = (e:any)=>{
                 const {name,value} = e.target;
                 console.log(name,value)
@@ -62,11 +52,7 @@ const StudentTask = (props: any) => {
                 WriteTask?:string | undefined|any,
                 audioLink?:string | undefined|any,
                 Speaking?:string | undefined|any,}
-
-        
         const submitTask =async ()=>{
-                 
-                
                 const submitTask:IsubmitTask  =   {
                         submissionId:'' ,
                         studentId:user.email,
@@ -86,7 +72,7 @@ const StudentTask = (props: any) => {
        
          
 
-        const theme = useSelector((state: any) => state.theme.theme)
+        
         return (
                 <div className={`   ${ formData && formData?.ScheduledTaskID? 'bg-blue-300  text-blue-400  shadow-gray-100 bg-opacity-5':''} w-full  ${height} overflow-hidden   hover:shadow-sm hover:shadow-gray-500   focus:bg-opacity-55 focus:bg-gray-600 border-opacity-45  rounded-xl `} >
                         {subMission? <SubmiSsionModal program = {formData} ScheduledTaskID={formData?.ScheduledTaskID}  studentSubMission={studentSubMission} task={selectedTask} onclose={setSubmission} />:''}

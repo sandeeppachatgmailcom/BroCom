@@ -8,7 +8,8 @@ export interface UserApi_route {
     forgotPassword:string,
     getSubmissionDetails:string,
     getBatchWiseStudentsList: string,
-    getDesignationWiseStaffList:string
+    getDesignationWiseStaffList:string,
+    applyPromocode:string
     
     
 

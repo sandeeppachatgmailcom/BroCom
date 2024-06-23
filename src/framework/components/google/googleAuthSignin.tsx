@@ -11,7 +11,7 @@ const GAuthsignin = (_props:GAuthsignin_Component) => {
     const dispatch = useDispatch() 
     const handleSubmit = async(e:any,formData:any) => {
         e.preventDefault();
-        console.log(formData);
+        console.log(formData,userApi.login);
         const result = await axiosApi.post(userApi.login,formData)
         .then(response => {
           console.log('Response:', response.data);
