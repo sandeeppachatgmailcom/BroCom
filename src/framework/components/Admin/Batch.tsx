@@ -67,7 +67,6 @@ const Batch = (props:props) => {
    
     const handleChange = (e:any): void => {
         let { name , value } = e.target;
-        console.log( name , value,'keypress found ')
         setActivebatch({
           ...activebatch,
           [name]: value
