@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom"
 import MenuBar from "../../framework/components/header/MenuBar"
 import axios from "axios"
 import axiosApi from "../../framework/api/axios"
-import activeUser, { login } from "../../framework/ReduxStore/activeUser"
+import  { login } from "../../framework/ReduxStore/activeUser"
 import { publicApi, userApi } from "../../entity/constants/api"
 import Academics from "../../framework/components/user/Academics"
 
 import { ToastContainer, toast } from "react-toastify"
 import useCompareObjects from "../../useCases/useCompareObjects"
 import useGetLogin from "../../useCases/useGetLogin"
-import UploadImageDocument from "../../framework/components/utilComponents/UploadImage"
 import { UserEntity_Model } from "../../entity/response/userModel"
 
 
@@ -244,7 +243,7 @@ const ProfilePage = (_props: any) => {
 
                                                         <input type="date" onChange={(e) => handleChange(e)}
                                                             className={`${darkTheme.inputtext}  appearance-none   rounded-sm     w-3/4   text-left   border-${border}  focus:border-gray-400 focus:outline-none`}
-                                                            value={formData.dateOfBirth}
+                                                            value={formData.dateOfBirth as any}
                                                             name="dateOfBirth"
                                                             id="id_dateOfBirth" />
                                                         <br />
