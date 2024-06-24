@@ -41,7 +41,7 @@ function Login( ) {
   
 
  
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (_e: any) => {
     try {
      // e.preventDefault();
       const responce = await axiosApi.post(userApi.login, formData,{
@@ -68,7 +68,7 @@ function Login( ) {
   };
 
 
-  
+
   useEffect(() => {
     if (Object.keys(activeUser).length) {
 
