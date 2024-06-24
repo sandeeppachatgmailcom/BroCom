@@ -35,7 +35,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
    
  
   useEffect(() => {
-    const newSocket = io("http://localhost:4000")  
+    const newSocket = io(`${axiosApi}`)  
     setSocket(newSocket);
     newSocket.on('connect', () => {
        
@@ -150,7 +150,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   };
   const opennewTab = () => {
 
-    window.open('http://localhost:5173/role', '_blank');
+    window.open(`${axiosApi}/role`, '_blank');
     dispatch(toggleMultiUser())
   }
   const searchUser = (e:any) => {

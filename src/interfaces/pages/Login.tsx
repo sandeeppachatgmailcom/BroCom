@@ -43,8 +43,11 @@ function Login( ) {
  
   const handleLogin = async (e: any) => {
     try {
-      e.preventDefault();
-      const responce = await axiosApi.post(userApi.login, formData)
+     // e.preventDefault();
+      const responce = await axiosApi.post(userApi.login, formData,{
+        withCredentials: true
+      })
+       
       console.log(responce, 'responce.data.password,responce,')
       if (!responce.data.active) {
         toast.error(responce.data.message)
@@ -52,19 +55,7 @@ function Login( ) {
       else {
         if (!responce.data.otpVerified) responce.data.resetPaaword = false;
         dispatch(login(responce.data))
-
-        // if(responce.data.role=='admin'){
-        //   navigate('/Admin')
-        // }
-        // else if(responce.data.role=='student'){
-        //   navigate('/Student')
-        // }
-        // else if(responce.data.role=='user'){
-        //   navigate('/user')
-        // }
-        // else if(responce.data.role=='trainer'){
-        //   navigate('/Trainer')
-        // }
+ 
 
       }
       console.log(responce, 'response')
@@ -76,6 +67,8 @@ function Login( ) {
     }
   };
 
+
+  
   useEffect(() => {
     if (Object.keys(activeUser).length) {
 
