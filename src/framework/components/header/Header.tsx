@@ -46,11 +46,6 @@ function Header() {
     toggleDarkMode()
   }, [defaultTheme])
 
-  useEffect(()=>{
-    if(logout){
-      Object.keys(activeUser).length ==0 ?navigate('/signin') :''
-    }
-  },[activeUser,logout])
 
 
 

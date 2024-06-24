@@ -15,7 +15,7 @@ const HomePage = (_props: Home_Page) => {
     const darkTheme = useSelector((state: any) => state.theme)
     const activeUser = useSelector((state: any) => state.activeUser.user)
     
-    const divlign = '   rounded  mt-1 '
+    const divlign = 'rounded  mt-1 '
 
     return (
         <div className="xl:flex block h-[100%] overflow-scroll   w-full p-2">
