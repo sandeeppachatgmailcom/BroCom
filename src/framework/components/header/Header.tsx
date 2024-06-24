@@ -16,7 +16,7 @@ import { login } from '../../ReduxStore/activeUser';
 function Header() {
 
   const dispatch = useDispatch()
-  const [logout, setLogout] = useState(false)
+  const [_logout, setLogout] = useState(false)
   const darkTheme = useSelector((state: any) => state.theme.themeDark)
   const activeUser = useSelector((state: any) => state.activeUser.user)
   const company = useSelector((state: any) => state.company.info.companyName)
