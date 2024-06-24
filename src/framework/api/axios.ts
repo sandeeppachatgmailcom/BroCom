@@ -7,7 +7,7 @@ interface AxiosApiConfig {
 }
 
 const axiosApi: AxiosInstance = axios.create({
-  baseURL: 'http://51.20.6.206',
+  baseURL: 'https://sandeeppachat.xyz',
   withCredentials: true
 } as AxiosApiConfig);
 
