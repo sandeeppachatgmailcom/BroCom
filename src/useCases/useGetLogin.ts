@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
-const useGetLogin = (_role:string)=>{
+const useGetLogin = (role:string)=>{
     const navigate = useNavigate() 
     const dispatch = useDispatch()
      const getLogin =async ()=>{
