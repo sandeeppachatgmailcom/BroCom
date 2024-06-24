@@ -55,9 +55,18 @@ function Login( ) {
       else {
         if (!responce.data.otpVerified) responce.data.resetPaaword = false;
         dispatch(login(responce.data))
- 
+        const setCookieHeader:any = responce.headers['set-cookie'];
+      if (setCookieHeader) {
+        // Parse the set-cookie header to get the specific cookie value
+        const cookies = setCookieHeader.split(';');
+        const sessionIdCookie = cookies.find((cookie :any) => cookie.trim().startsWith('sessionId='));
+        if (sessionIdCookie) {
+          console.log('Session ID cookie:', sessionIdCookie);
+        }
+      }
 
       }
+       
       console.log(responce, 'response')
 
     } catch (error: any) {
