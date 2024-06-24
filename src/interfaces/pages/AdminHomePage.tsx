@@ -4,7 +4,7 @@ import Profile from "../../framework/components/utilComponents/profile";
  
 //import 'react-calendar/dist/Calendar.css';
  
-import ChatBox from "../../framework/components/chatBox/chatBox";
+//import ChatBox from "../../framework/components/chatBox/chatBox";
 import AdminSubmenu from "../../framework/components/Admin/AdminMenuBar";
 import AdminContent from "../../framework/components/Admin/AdminContent";
 import ApproveStaff from "../../framework/components/Admin/StaffApproval";
@@ -52,7 +52,7 @@ const AdminHomePage: React.FC = () => {
               
             </div>
             <div className={`xl:w-3/12  h-[100%] w-full ${darkTheme.theme + divlign} bg-blue-800 bg-opacity-5 m-1  border-gray-300 border-opacity-45 rounded-xl mt-2 p-2`} >
-            <ChatBox setStudent ={()=>{}} />
+            {/* <ChatBox setStudent ={()=>{}} /> */}
                 {/* <SingleChat nameObj ={{name:'chandhini'}} />  */}
 
             </div>
