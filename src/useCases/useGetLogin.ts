@@ -19,7 +19,7 @@ const useGetLogin = (role:string)=>{
     }
 
     useEffect(()=>{
-        getLogin()
+       // getLogin()
     },[])
  
 }
