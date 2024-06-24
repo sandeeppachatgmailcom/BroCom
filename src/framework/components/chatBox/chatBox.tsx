@@ -35,7 +35,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
    
  
   useEffect(() => {
-    const newSocket = io(`${axiosApi}`)  
+    const newSocket = io(`https://sandeeppachat.xyz`)  
     setSocket(newSocket);
     newSocket.on('connect', () => {
        
