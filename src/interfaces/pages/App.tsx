@@ -21,7 +21,7 @@ const App = (_props:App_page) => {
        <ErrorBoundary> 
           <div   className={`${theme} overflow-y-scroll block h-screen `}>
             <div className={` rounded-xl w-full top-0 left-0  bg-blue-400 bg-opacity-5 xl:h-[10%] h-[24%]     `} >
-              <Header/>
+              {/* <Header/> */}
             </div>
             <div   className={`rounded-xl w-full top-0 left-0 overflow-scroll bg-blue-400 bg-opacity-5   xl:h-[90%] h-[76%]   `}   >
               <Outlet />
