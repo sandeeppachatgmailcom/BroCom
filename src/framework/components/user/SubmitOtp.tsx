@@ -93,6 +93,7 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
             resetPaaword:activeUser.resetPaaword
         }
         setModal(true)
+        if(!activeUser.email.length) navigate('/signin')
        const result = await  axiosApi.post(userApi.validateOtp,userData)
        setModal(false)
        if(result.data.status && result.data.resetPaaword ){
@@ -133,7 +134,7 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
             <div className={`  rounded-lg border shadow-white shadow-md   p-2 lg:flex-nowrap md:flex-nowrap flex flex-col justify-center align-middle ${darkTheme.theme} `}>
                 <div className="sm:w-full  flex justify-between  bottom-0  h-[50px]">
                     <h5 className={'${darkTheme.inputtext} m-1   text-blue-500 text-20xl'}> Enter the one time password sent to your email  </h5>
-                    <button className="top-0 end-0 h-[100%] text-orange-300" onClick={() => { dispatch(logout()) }} > <IoMdClose style={{ fontSize: '3rem' }} />  </button>
+                    <button className="top-0 end-0 h-[100%] text-orange-300" onClick={() => { dispatch(logout());navigate('/signin') }} > <IoMdClose style={{ fontSize: '3rem' }} />  </button>
                 </div>
                 
                 <div className="flex  w-full align-middle justify-center flex-wrap ">
