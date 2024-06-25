@@ -49,9 +49,9 @@ function Header() {
 
 
 
-  function deleteCookie(cookieName: any) {
+  function deleteCookie(cookieName: string) {
+    console.log(cookieName , 'cookieName')
     document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    
     console.log(`Cookie ${cookieName} has been deleted`);
   }
   const handleAdduser = () => {
@@ -61,7 +61,7 @@ function Header() {
   }
 
   const handleLogout = () => {
-    console.log(activeUser.role ,'activeUser.role ')
+    
     if (activeUser.role == 'student') {
       deleteCookie('manGrowstudent')
       setLogout(true)
