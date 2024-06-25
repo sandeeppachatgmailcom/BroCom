@@ -15,8 +15,8 @@ const GAuth = (_props:GauthComponent) => {
     const navigate = useNavigate()
     const [modal,setModal] = useState(false)
     const activeUser = useSelector((state:any)=> state.activeUser.user)
-    const handleSubmit = async(e:any ,formData : any) => {
-         e.preventDefault();
+    const handleSubmit = async(_e:any ,formData : any) => {
+        //  e.preventDefault();
         console.log(formData);
         setModal(true)
         const result = await axiosApi.post(userApi.signUp,formData)
