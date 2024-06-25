@@ -54,6 +54,7 @@ function Header() {
     console.log(cookieName , 'cookieName')
     const data = await axiosApi.post('/auth/logout',{cookieName:cookieName})
     console.log(data)
+    navigate('/signin')
   }
   const handleAdduser = () => {
 
@@ -68,26 +69,26 @@ function Header() {
       setLogout(true)
       dispatch(login({}))
       console.log('   navigate( /signin )')
-      navigate('/signin')
-      console.log('   navigate( /signin )')
+       
+      
        
     }
     else if (activeUser.role == 'trainer') {
       deleteCookie('manGrowtrainer')
       setLogout(true)
       dispatch(login({}))
-      navigate('/signin')
+      
     }
     else if (activeUser.role == 'admin') {
       deleteCookie('manGrowadmin')
       setLogout(true)
-      navigate('/signin')
+       
        
     }
     else
       deleteCookie('manGrow')
       dispatch(login({}))
-      navigate('/signin')
+      
        
   }
 
