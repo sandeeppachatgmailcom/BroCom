@@ -50,9 +50,9 @@ function Header() {
 
 
 
-  function deleteCookie(cookieName: string) {
+  async function deleteCookie(cookieName: string) {
     console.log(cookieName , 'cookieName')
-    const data = axiosApi.post('/auth/logout',cookieName)
+    const data = await axiosApi.post('/auth/logout',{cookieName:cookieName})
     console.log(data)
   }
   const handleAdduser = () => {
