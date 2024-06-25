@@ -73,7 +73,7 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
             console.log(otp.data,'resend')
             if(otp?.data?.success)  
                {
-              setSec(10)  
+              setSec(60)  
               console.log('text reached here ')
                navigate('/submitOtp')}
             else toast.error(otp?.data?.message)
@@ -94,16 +94,13 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
         }
         setModal(true)
        const result = await  axiosApi.post(userApi.validateOtp,userData)
-       console.log(result.data,'after confirmation')
        setModal(false)
        if(result.data.status && result.data.resetPaaword ){
-        console.log(result.data.role,'result.data Success')
             dispatch(login(result.data.email))
             navigate('/submitOtptoresetPassword')
        }
        else if(result.data.otpVerified && !result.data.resetPaaword ){
          dispatch(login(result.data))
-         console.log(result.data.result.role,'result.data.result.roleresult.data.result.role')
          gotoHome(result.data.result.role)
        }
        else{
