@@ -17,7 +17,7 @@ const SubmitOtp = (_props:SubmitOtp_Component) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [min,setMin] = useState(0)
-    const [sec,setSec] = useState(10)
+    const [sec,setSec] = useState(60)
     const [resend,setResend] = useState(false)
 
     useEffect(() => {
