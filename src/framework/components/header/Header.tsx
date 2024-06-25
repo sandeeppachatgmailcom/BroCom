@@ -22,7 +22,7 @@ function Header() {
   const activeUser = useSelector((state: any) => state.activeUser.user)
   const company = useSelector((state: any) => state.company.info.companyName)
   const navigate = useNavigate()
-  const [cookies, setCookie, removeCookie] = useCookies(['manGrowstudent']);
+  const [  removeCookie] = useCookies(['manGrowstudent']);
   const [defaultTheme, setDefaultTheme] = useState(
   
     // Check for initial state based on browser preference (optional):
