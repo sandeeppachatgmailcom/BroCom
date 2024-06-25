@@ -17,7 +17,7 @@ const PdfPreview = ({ fileUrl }:any) => {
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <Worker workerUrl={`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`}>
-        <Viewer fileUrl={`/api${fileUrl}`} plugins={[defaultLayoutPluginInstance]} />
+        <Viewer fileUrl={`${fileUrl}`} plugins={[defaultLayoutPluginInstance]} />
       </Worker>
     </div>
   );
