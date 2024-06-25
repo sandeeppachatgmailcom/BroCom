@@ -66,21 +66,25 @@ function Header() {
       deleteCookie('manGrowstudent')
       setLogout(true)
       dispatch(login({}))
+      navigate('/signin')
        
     }
     else if (activeUser.role == 'trainer') {
       deleteCookie('manGrowtrainer')
       setLogout(true)
       dispatch(login({}))
+      navigate('/signin')
     }
     else if (activeUser.role == 'admin') {
       deleteCookie('manGrowadmin')
       setLogout(true)
+      navigate('/signin')
        
     }
     else
       deleteCookie('manGrow')
       dispatch(login({}))
+      navigate('/signin')
        
   }
 
