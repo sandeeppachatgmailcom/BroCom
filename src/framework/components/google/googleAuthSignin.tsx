@@ -9,7 +9,7 @@ import { login } from "../../ReduxStore/activeUser";
 import { GAuthsignin_Component } from "../../../entity/components/google/GAuthsignin";
 const GAuthsignin = (_props:GAuthsignin_Component) => {
     const dispatch = useDispatch() 
-    const handleSubmit = async(e:any,formData:any) => {
+    const handleSubmit = async(formData:any) => {
         //e.preventDefault();
         console.log(formData,userApi.login);
         const result = await axiosApi.post(userApi.login,formData)
@@ -38,7 +38,7 @@ const GAuthsignin = (_props:GAuthsignin_Component) => {
                         email:decoded.email,
                         googleAuth:true
                     }
-                    handleSubmit(Event,formData);  
+                    handleSubmit(formData);  
                    }
                 }}
                 onError={() => {
