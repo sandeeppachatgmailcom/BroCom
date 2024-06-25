@@ -10,6 +10,7 @@ import {   toggleTheme } from '../../ReduxStore/themeSlice';
   
 import { toggleMultiUser } from '../../ReduxStore/multipleUser';
 import { login } from '../../ReduxStore/activeUser';
+import axiosApi from '../../api/axios';
 
 //import ProfileImageBox from './ProfileImage';
 
@@ -51,8 +52,8 @@ function Header() {
 
   function deleteCookie(cookieName: string) {
     console.log(cookieName , 'cookieName')
-    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    console.log(`Cookie ${cookieName} has been deleted`);
+    const data = axiosApi.post('logout',cookieName)
+    console.log(data)
   }
   const handleAdduser = () => {
 
