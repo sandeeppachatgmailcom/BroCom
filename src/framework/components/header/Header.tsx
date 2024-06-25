@@ -51,16 +51,30 @@ function Header() {
 
 
   async function deleteCookie(cookieName: string) {
-    console.log(cookieName , 'cookieName')
-    document.cookie =  cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    const data = await axiosApi.post('/auth/logout',{cookieName:cookieName})
-    console.log(data)
-    // Client-side JavaScript (e.g., using document.cookie)
-
-
-    dispatch(login({}))
-    //navigate('/signin')
+    try {
+      console.log(cookieName, 'cookieName');
+  
+      // Clear cookie on client-side (assuming document.cookie is accessible)
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+  
+      // Send logout request to server (assuming axiosApi is configured)
+      const response = await axiosApi.post('/auth/logout', { cookieName });
+  
+      // Handle server response (optional, based on your API design)
+      if (response.status === 200) {
+        console.log('Cookie deleted and logout successful:', response.data);
+        dispatch(login({})); // Dispatch login action (assuming Redux)
+        // navigate('/signin'); // Navigate to login page (optional)
+      } else {
+        console.error('Error during logout:', response.statusText);
+        // Handle logout error (e.g., display error message)
+      }
+    } catch (error) {
+      console.error('Error deleting cookie:', error);
+      // Handle other errors (e.g., network issues)
+    }
   }
+  
   const handleAdduser = () => {
 
     dispatch(toggleMultiUser())
