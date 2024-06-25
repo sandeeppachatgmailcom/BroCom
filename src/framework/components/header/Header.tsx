@@ -1,6 +1,6 @@
 import { useEffect, useState, } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useCookies } from 'react-cookie';
 import { RiUserAddFill } from "react-icons/ri";
 import { FaPowerOff } from "react-icons/fa";
 import { MdLightMode } from "react-icons/md";
@@ -22,8 +22,9 @@ function Header() {
   const activeUser = useSelector((state: any) => state.activeUser.user)
   const company = useSelector((state: any) => state.company.info.companyName)
   const navigate = useNavigate()
+  const [cookies, setCookie, removeCookie] = useCookies(['manGrowstudent']);
   const [defaultTheme, setDefaultTheme] = useState(
-
+  
     // Check for initial state based on browser preference (optional):
     localStorage.getItem('theme') || // Check localStorage if available
       (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -56,7 +57,7 @@ function Header() {
       console.log(Document ,'document.cookie')
       // Clear cookie on client-side (assuming document.cookie is accessible)
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-  
+      removeCookie('manGrowstudent' )
       // Send logout request to server (assuming axiosApi is configured)
       const response = await axiosApi.post('/auth/logout', { cookieName });
   
