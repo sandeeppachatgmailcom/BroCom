@@ -66,7 +66,9 @@ function Header() {
       deleteCookie('manGrowstudent')
       setLogout(true)
       dispatch(login({}))
+      console.log('   navigate( /signin )')
       navigate('/signin')
+      console.log('   navigate( /signin )')
        
     }
     else if (activeUser.role == 'trainer') {
