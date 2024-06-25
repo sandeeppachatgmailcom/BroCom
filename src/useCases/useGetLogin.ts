@@ -4,7 +4,7 @@ import { login } from "../framework/ReduxStore/activeUser"
 import axiosApi from "../framework/api/axios"
 import { userApi } from "../entity/constants/api"
 import { useNavigate } from "react-router-dom"
-import Cookies from 'js-cookie';
+
 
 
 const useGetLogin = (role:string)=>{
@@ -16,8 +16,8 @@ const useGetLogin = (role:string)=>{
         if(role.length){
         const tempuser = await  axiosApi.get(userApi.getlogin+`/${role}`) 
         console.log(tempuser,'tempusertempuser')
-        const userRole = Cookies.get('manGrowRole');
-        console.log(userRole,'document.cookie')
+
+        console.log(documentRef.current,'document.cookie')
         if(!tempuser.data.success && Object.keys(tempuser.data).length <=2 ) navigate('/signin') 
             
           if(Object.keys(tempuser.data).length > 2) dispatch(login(tempuser.data))
