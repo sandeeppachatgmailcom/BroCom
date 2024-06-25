@@ -52,7 +52,7 @@ useEffect(()=>{
     return (
          
              
-                <div className="block h-[50%] xl:flex  bg-opacity-20 shadow-xl   border border-opacity-10 border-blue-400 rounded-lg mt-1 p-1 w-full">
+                <div className="block  xl:flex  bg-opacity-20 shadow-xl   border border-opacity-10 border-blue-400 rounded-lg mt-1 p-1 w-full">
                     <div className="      block m-1 lg:w-full  xl:w-3/12 w-full     md:w-full  overflow-scroll  me-1 border-r-blue-600  border-e-2    border-gray-300 border-opacity-20 ">
                         <div className="flex flex-wrap md:flex-col   m-1     ">
                         {user && user?.map((item :any, index :number) => {
@@ -82,7 +82,7 @@ useEffect(()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="  m-1    md:flex-col w-full flex justify-center items-center sm:w-full  md:w-ful lg:w-4/6 xl:w-4/6  shadow-blue-200 rounded-s-none border-gray-300 border-opacity-70      rounded-xl">
+                    <div className="  m-1   md:flex-col w-full flex justify-center items-center sm:w-full  md:w-fullg:w-4/6   overflow-scroll  border-gray-300 border-opacity-70      rounded-xl">
                         { selectedStaff? <AdminStaffApproval staff={selectedStaff}/>:''}
                     </div>
     

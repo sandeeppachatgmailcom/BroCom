@@ -35,9 +35,9 @@ const SignUp = (_props: SignupPage_pages) => {
   });
 
   const handleChange = (e: any) => {
-    
+
     const { name, value } = e.target;
-    
+
     setFormData({
       ...formData,
       [name]: value
@@ -108,15 +108,15 @@ const SignUp = (_props: SignupPage_pages) => {
 
 
   return (
-    <div className={` ${darkTheme.theme}  xl:flex lg:flex md:block sm:block  justify-center xl:w-full items-center m-3 h-[100%] `}>
+    <div className={` ${darkTheme.theme} flex  xl:flex lg:flex  sm:block flex-col justify-center xl:w-full items-center m-3 h-[100%] `}>
       {modal ? <Modal /> : ''}
-      <div className="xl:flex justify-center sm:w-full sm:block  md:w-full items-center   h-[100%] ">
-        <div className='text-3xl animate-pulse'>
+      <div className="xl:flex justify-center sm:w-full sm:block  md:w-full items-center p-2 lg:h-[100%] ">
+        <div className='text-2xl items-center text-center justify-center flex h-[100%] animate-pulse'>
           {info}
         </div>
       </div>
-      <div className={`${darkTheme.theme} h-[100%] max-w-md w-full space-y-8  p-5 rounded-xl`}>
-        <div className={` ${darkTheme.theme} h-[80%] max-w-md w-full space-y-8 border border-gray-600 border-opacity-30 p-5 rounded-xl`}>
+      <div className={`${darkTheme.theme} h-[100%] sm:w-full   border justify-center flex max-w-md w-full space-y-8  p-5 rounded-xl`}>
+        <div className={` ${darkTheme.theme} h-[100%] max-w-md w-full space-y-8 border-8 border-gray-600 border-opacity-30 p-5 rounded-xl`}>
           <div>
             <h2 className={` ${darkTheme.inputtext} mt-6 text-center text-3xl  `}>Sign up</h2>
           </div>
@@ -148,12 +148,12 @@ const SignUp = (_props: SignupPage_pages) => {
             </div>
             <div >
               <label htmlFor="password" className="text-sm">Retype Password</label>
-              <div id='passwordDiv' className='flex flex-row  appearance-none rounded-none relative   border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm '>
-                <input onClick={handleDivMargin} id="retypepassword" name="password" type={`${retypeView}`} required value={String(password)} onChange={(e: any) => { setPassword(e.target.value) }} autoComplete="current-password" className={`${darkTheme.inputtext} appearance-none rounded-none relative block   px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm border-e-0 rounded-e-none w-5/6`} placeholder="Password" />
-                <button className='border-s-0  border-gray-300 rounded-e-md w-1/6 items-end justify-end pl-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10' onClick={(e) => {
+              <div id='passwordDiv' className='flex  flex-row w-full  appearance-none rounded-none relative border    border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm '>
+                <input onClick={handleDivMargin} id="retypepassword" name="password" type={`${retypeView}`} required value={String(password)} onChange={(e: any) => { setPassword(e.target.value) }} autoComplete="current-password " className={`${darkTheme.inputtext}  appearance-none rounded-none relative block   px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10   sm:text-sm border-e-0 rounded-e-none w-5/6`} placeholder="Password" />
+                <button className='border-s-0  border-gray-300 rounded-e-md w-1/6 items-center   flex justify-center    focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10' onClick={(e) => {
                   e.preventDefault();
                   retypeView == 'password' ? setRetypeView('text') : setRetypeView('password')
-                }} > {retypeView == 'password' ? <BsEyeFill /> : <BiSolidHide />} </button>
+                }} > {retypeView == 'password' ? <BsEyeFill  /> : <BiSolidHide   />} </button>
               </div>
             </div>
           </div>
@@ -165,14 +165,14 @@ const SignUp = (_props: SignupPage_pages) => {
               && formData.firstName.trim().length > 0
               && formData.email.includes('@') ? <button onClick={(e) => { handleSubmit(e) }} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Sign up
-            </ button> : <small   className="  group relative flex-wrap w-full flex justify-center py-2 px-4 border text-center bg-opacity-5 border-transparent text-sm font-medium rounded-md text-red-500 bg-gray-800 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Password should minimum 8 length and alphanumeric
+            </ button> : <small className="  group relative flex-wrap w-full flex justify-center py-2 px-4 border text-center bg-opacity-5 border-transparent text-sm font-medium rounded-md text-red-500 bg-gray-800 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Password should minimum 8 length and alphanumeric
             </ small>}
 
             <br />
             <h1 className='w-full text-center '> or </h1>
             <div className='flex align-center justify-center   h-[50px] ' aria-disabled={role.length ? false : true}>
-              {role.length ? <GAuth role={role} /> : <h1 className='text-red-500 font-semibold  w-full flex justify-center align-middle  h-100 '>  <FcGoogle /> Choose a role to sign in </h1>}
+              <GAuth role={role} />
             </div>
             <div className='container flex justify-end'>
               <Link to="/signin"> Sign in </Link>

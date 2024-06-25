@@ -72,11 +72,11 @@ const AdminStaffApproval :React.FC<any> = (props) => {
         <>
          <ToastContainer/>
             {Object.keys(props.staff).length &&
-                <div className="flex justify-center h-full  align-middle items-center flex-col p-3 md:flex-col   w-full  ">
-                    <div className="w-full lg:w-full h-full shadow-lg rounded-lg xl:flex lg:items-center sm:w-full   sm:block sm:justify-items-center ">
-                        <div className=" justify-center   h-100 w-full items-center sm:block xl:flex lg:flex   ">
-                            <div className="flex xl:w-1/6     justify-center">
-                                <div  style={{backgroundImage:`url(${formData.profileImage})`,backgroundPosition:'center',backgroundSize:'cover'}}  className="flex   flex-col justify-self-center h-[100px]  w-[100px] bg-blue-300  shadow-md rounded-full shadow-gray-400 ">
+                <div className="flex justify-center h-full  rounded-xl  align-middle items-center flex-col p-3 md:flex-col   w-full  ">
+                    <div className="w-full lg:w-full flex      rounded-lg xl:flex lg:items-center sm:w-full   sm:block sm:justify-items-center ">
+                        <div className=" justify-center      h-100 w-full items-center sm:block xl:flex lg:flex   ">
+                            <div className="flex xl:w-1/6    justify-center">
+                                <div  style={{backgroundImage:`url(${formData.profileImage})`,backgroundPosition:'center',backgroundSize:'cover'}}  className="flex   flex-col justify-self-center h-[100px]  w-[100px] bg-blue-300   rounded-full ">
                                
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ const AdminStaffApproval :React.FC<any> = (props) => {
                                     <label className="w-4/2 text-left" htmlFor=""> {formData?.role}</label>
                                     <label className="w-4/2 text-left" htmlFor="">   {formData?.email}</label>
 
-                                    <label className="w-4/2 text-left" htmlFor=""> 9847089337  {formData?.mob}</label>
+                                    <label className="w-4/2 text-left" htmlFor="">   {formData?.mob}</label>
                                     <label className={`w-4/2 text-left ${formData?.otpVerified ? 'text-blue-500' : 'text-red-500 font-semibold'}`} htmlFor="">   {formData?.otpVerified ? '' : 'Otp verification is pending '}</label>
                                 </div>
                             </div>
@@ -97,19 +97,19 @@ const AdminStaffApproval :React.FC<any> = (props) => {
                     </div>
 
 
-                    {formData?.otpVerified ? <div className="xl:flex  block mt-1     w-full h-[100%] " >
+                    {formData?.otpVerified ? <div className="xl:flex  block mt-1      w-full h-[100%] " >
 
 
-                        <div className="xl:flex w-full items-center flex-wrap   rounded-lg  shadow-gray-400 p-2  ">
+                        <div className="xl:flex w-full items-center flex-col rounded-lg   ">
 
-                            <div className=" xl:flex md:block   w-full justify-between md:p-4">
-                                <div className="  flex xl:w-1/2 justify-between p-6 ">
+                            <div className=" xl:flex md:block  flex        overflow-hidden  w-full justify-between md:p-4">
+                                <div className="  flex xl:w-1/2 me-1 justify-between p-1 ">
                                     <label className=" w-3/6" htmlFor=""> approve  </label>
                                     
                                     <div className="w-4/2 text-left" ><ButtonSwitch name='approve' value={!formData.user} onChange={(name:any, value:any) => handleApprove(name, value)} /></div>
 
                                 </div>
-                                <div className="  flex xl:w-1/2 justify-between p-6">
+                                <div className="  flex xl:w-1/2 ms-1 justify-between p-1">
                                     <label className=" w-2/6" htmlFor=""> Active  </label>
                                     <div className="w-4/2 text-left" ><ButtonSwitch name='Active' value={formData.active} onChange={(name:any, value:any)=> handleSwitchChange(name, value)} /></div>
 
@@ -117,14 +117,14 @@ const AdminStaffApproval :React.FC<any> = (props) => {
 
                             </div>
 
-                            <div className="xl:flex  md:block w-full justify-between md:p-6 ">
-                                <div className="  flex xl:w-1/2 justify-between p-2">
+                            <div className="xl:flex md:block  flex        overflow-hidden  w-full justify-between md:p-4 ">
+                                <div className="flex xl:w-1/2 me-1 justify-between p-1 ">
                                     <label className=" w-2/6" htmlFor=""> Admin </label>
                                      
                                     <div className="w-4/2 text-left" ><ButtonSwitch name='Admin' value={formData.admin} onChange={(name:any, value:any) => handleSwitchChange(name, value)} /></div>
 
                                 </div>
-                                <div className="xl:flex  md:block w-1/2 justify-between md:p-6 ">
+                                <div className=" flex xl:w-1/2 ms-1 justify-between p-1">
                                     <label className=" w-2/6" htmlFor="">  Trainer   </label>
                                      
                                     <div className="w-4/2 text-left" ><ButtonSwitch name='trainer' value={formData.trainer} onChange={(name:any, value:any)=> handleSwitchChange(name, value)} /></div>
@@ -143,7 +143,7 @@ const AdminStaffApproval :React.FC<any> = (props) => {
                                     {batch? <DropdownMenu name='batchId' value={formData?.batchId  ? formData?.batchId : 'Select'} onChange={handleChange} items={batch} /> :''  } 
                                     
                                 </div>:''}
-                                { formData.trainer?  <div className="flex w-3/6 p-6    justify-between">
+                                { formData.trainer?  <div className="flex w-3/6  items-center   justify-between">
                                     <label className=" w-2/6 text-sm" htmlFor=""> Designation  </label>
                                     
                                     {combDesignation? <DropdownMenu name='designation' value={formData?.designation  ? formData?.designation : 'Select'} onChange={handleChange} items={combDesignation} /> :''  } 
