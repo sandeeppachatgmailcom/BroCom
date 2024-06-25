@@ -16,7 +16,7 @@ const useGetLogin = (role:string)=>{
         if(role.length){
         const tempuser = await  axiosApi.get(userApi.getlogin+`/${role}`) 
         console.log(tempuser,'tempusertempuser')
-        const userRole:any = Cookies.get('manGrowRole');
+        const userRole = Cookies.get('manGrowRole');
         console.log(userRole,'document.cookie')
         if(!tempuser.data.success && Object.keys(tempuser.data).length <=2 ) navigate('/signin') 
             
