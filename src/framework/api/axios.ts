@@ -8,7 +8,7 @@ interface AxiosApiConfig {
 
 const axiosApi: AxiosInstance = axios.create({
   baseURL: 'https://sandeeppachat.xyz',
-  withCredentials: true
+  withCredentials: true // Ensures cookies are sent with requests
 } as AxiosApiConfig);
 
 export default axiosApi;
