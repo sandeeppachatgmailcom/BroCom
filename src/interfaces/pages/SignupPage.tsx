@@ -9,7 +9,7 @@ import { userApi } from '../../entity/constants/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from './modalOnLoad';
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import { SignupPage_pages } from '../../entity/pages/signupPage_Pages';
 
 
