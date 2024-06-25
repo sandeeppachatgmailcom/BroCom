@@ -53,7 +53,7 @@ function Header() {
   async function deleteCookie(cookieName: string) {
     try {
       console.log(cookieName, 'cookieName');
-  
+      console.log(document.cookie,'document.cookie')
       // Clear cookie on client-side (assuming document.cookie is accessible)
       document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   

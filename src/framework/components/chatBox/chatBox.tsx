@@ -213,8 +213,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
           <div className="border mt-2 border-opacity-20 border-gray-500 p-1 rounded-xl overflow-scroll h-[30%]">
 
             {usersList?.map((item:any) => {
-              console.log(item.email,activeUser.email, item.email == activeUser.email ,' .email')
-
+             
               if (item?.email != activeUser?.email) return <div key={item?.email}  onClick={() => { item.firstName === user.firstName ? setUser({}) : getConversation(item?.email); setUser(item); setSelectedUser(item?.email); item.role == 'student' && activeUser.role != 'student' ? setStudent({ status: true, user: item?.email }) : setStudent({ status: false, user: item?.email }) }} className={`${!checkOnline(item?.email) ? 'text-opacity-50' : ''} rounded-xl cursor-pointer bg-opacity-30 ${item.email == selectedUser ? 'bg-blue-400' : 'bg-gray-500 bg-opacity-5 '} rounded-sm `}>
                 <div className="m-1 h-[50px] w-full items-center flex text-start justify-between">
                   <div className="flex w-7/12 h-[100%]  items-start p-2">
