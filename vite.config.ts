@@ -9,7 +9,10 @@ export default defineConfig({
       '/api': {
         target: 'https://firebasestorage.googleapis.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        headers: {
+          'Access-Control-Allow-Origin': '*', // Add CORS headers
+        },
       }
     }
   }
