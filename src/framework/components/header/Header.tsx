@@ -52,9 +52,12 @@ function Header() {
 
   async function deleteCookie(cookieName: string) {
     console.log(cookieName , 'cookieName')
+    document.cookie =  cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     const data = await axiosApi.post('/auth/logout',{cookieName:cookieName})
     console.log(data)
-     
+    // Client-side JavaScript (e.g., using document.cookie)
+
+
     dispatch(login({}))
     //navigate('/signin')
   }
