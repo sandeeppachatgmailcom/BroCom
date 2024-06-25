@@ -14,13 +14,12 @@ const useGetLogin = (role:string)=>{
     documentRef.current = document;
      const getLogin =async ()=>{
         if(role.length){
-        const tempuser = await  axiosApi.get(userApi.getlogin+`/${role}`) 
+        const tempuser = await  axiosApi.get(userApi.getlogin+`/${role}`)
         console.log(tempuser,'tempusertempuser')
-
         console.log(documentRef.current,'document.cookie')
         if(!tempuser.data.success && Object.keys(tempuser.data).length <=2 ) navigate('/signin') 
             
-          if(Object.keys(tempuser.data).length > 2) dispatch(login(tempuser.data))
+         else if(tempuser.data.success) dispatch(login(tempuser.data))
           }
     }
     useEffect(()=>{
