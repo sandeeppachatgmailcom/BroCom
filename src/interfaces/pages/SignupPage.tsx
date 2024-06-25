@@ -85,7 +85,7 @@ const validatePassword = (password:string) => {
         if(response?.data.success){
         console.log("inside")
         
-        toast.success(`user ${response.data.firstname} created ,Validate OTP while Sign in within 30 minute `,   )
+        toast.success(`user ${response.data._doc.firstname} created ,Validate OTP when first Sign in   `,   )
         setModal(false)
         }
             else{
