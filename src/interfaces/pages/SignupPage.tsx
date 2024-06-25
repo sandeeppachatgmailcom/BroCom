@@ -21,6 +21,7 @@ const SignUp = (_props:SignupPage_pages) => {
   const darkTheme = useSelector((state:any)=>state.theme)
   const [password,setPassword] = useState(null)
   const ref = useRef<HTMLDivElement | null>(null);
+  const [info,setInfo] = useState('submit all requiered information ')
   
   const [role,setRole] = useState('')
   const [modal,setModal] = useState(false)
@@ -86,6 +87,7 @@ const validatePassword = (password:string) => {
         console.log("inside")
         
         toast.success(`user ${response.data._doc.firstname} created ,Validate OTP when first Sign in   `,   )
+        setInfo("🎉 Registration Successful!, your otp will be verified with first login")
         setModal(false)
         }
             else{
@@ -107,7 +109,10 @@ const validatePassword = (password:string) => {
   return (
     <div className= {` ${darkTheme.theme}  xl:flex lg:flex md:block sm:block  justify-center xl:w-full items-center m-3 h-[100%] `}>
         {modal?<Modal/>:''}
-       <div className="xl:flex justify-center sm:w-full sm:block  md:w-full  "> 
+       <div className="xl:flex justify-center sm:w-full sm:block  md:w-full items-center   h-[100%] "> 
+          <div className='text-3xl animate-pulse'>
+                  {info}
+          </div>
        </div>
       <div className={`${darkTheme.theme } h-[100%] max-w-md w-full space-y-8  p-5 rounded-xl`}>
       <div className={` ${darkTheme.theme } h-[80%] max-w-md w-full space-y-8 border border-gray-600 border-opacity-30 p-5 rounded-xl`}>
