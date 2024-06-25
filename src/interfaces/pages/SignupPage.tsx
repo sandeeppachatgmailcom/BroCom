@@ -86,9 +86,10 @@ const validatePassword = (password:string) => {
         console.log("inside")
         
         toast.success(`user ${response.data.firstname} created ,Validate OTP while Sign in within 30 minute `,   )
-        
+        setModal(false)
         }
             else{
+              setModal(false)
             toast.error(`user  alredy exist `)
         }
         })

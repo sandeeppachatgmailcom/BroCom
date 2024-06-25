@@ -172,7 +172,7 @@ function Login( ) {
               onChange={(e) => handleChange(e)}
               required
             />
-            <div className="w-full flex justify-end "><small className="cursor-pointer text-right w-full text-blue-400" onClick={() => { handleForgotPassword() }}>forgot password</small> </div>
+            <div className="  flex justify-end "><small className="cursor-pointer text-right w-full text-blue-400" onClick={() => { handleForgotPassword() }}>forgot password</small> </div>
           </div>
           <br />
 
