@@ -14,6 +14,7 @@ const useGetLogin = (role:string)=>{
    
      const getLogin =async ()=>{
         if(role.length){
+            console.log(role,'rolerolerole')
         const tempuser = await  axiosApi.get(userApi.getlogin+`/${role}`)
         console.log(tempuser,'tempusertempuser')
        
