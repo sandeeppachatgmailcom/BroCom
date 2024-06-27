@@ -83,7 +83,7 @@ useEffect(()=>{
     }
 
     const divert = async () => {
-
+        console.log(document.cookie.split(';').map((item) => item.split('=')).filter((token) => token[0].trim().startsWith('man')).length,'document.cookie.split().map((item) => item.split()).filter((token) => token[0].trim().startsWith( )).length')
         if (document.cookie.split(';').map((item) => item.split('=')).filter((token) => token[0].trim().startsWith('man')).length > 1) {
             navigate('/role')
         }
