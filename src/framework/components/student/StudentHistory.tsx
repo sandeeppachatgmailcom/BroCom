@@ -18,7 +18,7 @@ const StudentHistory = ({ useremail}:{ useremail:string})=>{
     const parentDivRef = useRef<HTMLDivElement>(null);
     const studentProgress :any = useStudentProgressSummary({email:user?.email })||[]
      //useGetLogin('manGrowstudent');
-     const [pendingGraphData,setPendingGraphData] = useState<{name:string,value:number  }[]>([])      
+     const [_pendingGraphData,setPendingGraphData] = useState<{name:string,value:number  }[]>([])      
        
         useEffect(()=>{
          if(studentProgress.length){ 

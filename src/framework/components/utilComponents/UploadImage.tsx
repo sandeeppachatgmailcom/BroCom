@@ -32,7 +32,7 @@ const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onC
 
     const uploadImage = async (e:any) => {
         const image:any = e.target.files[0]
-        const fileName = `mangrow/image/pdf${Date.now()}.${image.type}`
+        const fileName = `mangrow/image/${Date.now()}.${image.type}`
        const uploadImageUrl = await putObject(fileName)
         await axios.put(uploadImageUrl, image, {
             headers: {
