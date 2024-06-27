@@ -41,10 +41,15 @@ const ProfilePage = (_props: any) => {
         })
     } 
 
+useEffect(()=>{
+   console.log('first')
+    divert()
+},[])
+
     const applyPromotionCode =async()=>{
-        console.log(promoCode,userApi.applyPromocode,'promoCode')
+       
         const result = await axiosApi.post(userApi.applyPromocode,promoCode)
-        console.log(result.data,'result.dataresult.data')
+       
         if(result.data){
             const newUser = JSON.parse(JSON.stringify(user))  
             newUser.role = result.data.role
