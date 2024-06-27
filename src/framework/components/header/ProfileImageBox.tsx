@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import UploadImage from "../../services/firebase";
+// import UploadImage from "../../services/firebase";
 import axiosApi from "../../api/axios"; 
 import { userApi } from "../../../entity/constants/api"; 
 import { login } from "../../ReduxStore/activeUser";
