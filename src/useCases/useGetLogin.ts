@@ -24,7 +24,7 @@ const useGetLogin = (role:string)=>{
     }
     useEffect(()=>{
         getLogin()
-    },[])
+    },[role])
  
 }
 
