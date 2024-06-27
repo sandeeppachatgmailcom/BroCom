@@ -14,14 +14,15 @@ export default function VoiceRecorder(props: any) {
      
    if (audioLink?.length) {
       const audio = document.createElement('audio');
-      audio.src = myaudioLink || ''; // Use audioLink directly instead of value
+      audio.src = audioLink ; // Use audioLink directly instead of value
       audio.controls = true;
       setRecordings([{ audio }]); // Assuming you only need to set the audio element
     }
   };
   const generatePdfUrl = async (documentKey:string)=>{
+
     const currentFile:any = await getObjectUrl(documentKey) 
-    console.log(currentFile,'audioLink ')
+    console.log(currentFile,'audioLink ',documentKey)
     setMyAudiolink(currentFile)
     loadAttachment(currentFile);
 }
@@ -64,7 +65,8 @@ export default function VoiceRecorder(props: any) {
    
     const audioBlob = recording.blob;
     const fileName = `mangrow/audio/pdf${Date.now()}.${audioBlob.type}`
-    const audioiploadLink:any = putObject(fileName)
+    const audioiploadLink:any =await putObject(fileName)
+    console.log(fileName,audioiploadLink,'fileName,audioiploadLink')
     await axios.put(audioiploadLink, audioBlob, {
       headers: {
           'Content-Type': audioBlob.type,
@@ -91,7 +93,7 @@ useEffect(()=>{
         </div>
       ))}
       <div className='h-10  flex '>
-        {!recordings ? <AudioRecorder   onRecordingComplete={handleRecordComplete} recorderControls={recorderControls} showVisualizer={true} />:""}
+        {!myaudioLink ? <AudioRecorder   onRecordingComplete={handleRecordComplete} recorderControls={recorderControls} showVisualizer={true} />:""}
         {recaudio?.length ? (
           <button onClick={() => props.onSaveClick()} className="h-10 w-10   ms-1 flex justify-evenly rounded-full shadow-md shadow-gray-100 items-center border bg-gray-300 text-black  w-30 hover:border hover:border-blue-400 hover:text-blue-500 " >
             <BsFillFloppyFill className='text-green-800'/>
