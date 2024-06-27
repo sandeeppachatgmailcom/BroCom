@@ -1,11 +1,13 @@
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
+import { GetObjectCommand, PutObjectCommand, S3, S3Client } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+const S3MANGROW_ID = import.meta.env.VITE_S3MANGROW_ID 
+const S3MANGROW_KEY = import.meta.env.VITE_S3MANGROW_KEY 
 
 const s3Client = new S3Client({
     region:'eu-north-1',
     credentials:{
-        accessKeyId:'AKIA6GBMGESHQAUCIEPR',
-        secretAccessKey:'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'
+        accessKeyId:S3MANGROW_ID,
+        secretAccessKey:S3MANGROW_KEY
     }
 })
 
@@ -20,21 +22,15 @@ async function getObjectUrl(key:string){
 }
 
 
-async function putObject(fileName:string,contentType:string){
+async function putObject(fileName:string){
+    const ContentType:any = s3Client
     const command = new PutObjectCommand({
         Bucket:'mangrow',
-        Key:`/mangrow/${fileName}`,
-        ContentType:contentType
+        Key:fileName,
+        ContentType:ContentType
     }) 
     const url = await getSignedUrl(s3Client,command)
     return url
 }
 
-console.log('first')
-async function init (){
-    const result = await getObjectUrl('/mangrow/image1719406310844.jpeg') 
-    console.log(result,'result')
-   // const putresult = await putObject(`image${Date.now()}.jpeg`,'image/jpeg') 
-   // console.log(putresult)
-} 
-init()
+export {putObject,getObjectUrl} 

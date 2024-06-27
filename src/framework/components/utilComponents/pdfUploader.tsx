@@ -4,16 +4,28 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import { ProfileImageBox_Component } from "../../../entity/components/common/profileImageBox";
 import { FaExclamation } from "react-icons/fa"; 
 import PdfPreview from "./pdfViewer";
-import uploadPDF from "../../services/uploadPdf";
+//import uploadPDF from "../../services/uploadPdf";
+import { putObject, getObjectUrl } from "../../services/s3Bucket";
+import axios from "axios";
 const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onChange  }:ProfileImageBox_Component) => {
     const imageInputRef = useRef<HTMLInputElement | null> (null);
     const [formData,  ] = useState(value);
     const [upload,setUpload] =  useState(false)
     const [outData,setOutData] = useState({value:''})
+    const [pdfLink,setPdflink] = useState('') 
+    
+    const generatePdfUrl = async (documentKey:string)=>{
+        const currentFile = await getObjectUrl(documentKey) 
+        console.log(currentFile,'pdflink ')
+        setPdflink(currentFile)
+    }  
+    
+    
+    
     
     useEffect(() => {
         console.log(value,'input value  ')
-
+        generatePdfUrl(value)
         setOutData({value:value});
     }, [value]);
     useEffect(()=>{
@@ -22,25 +34,34 @@ const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onCha
 
     const uploadImage = async (e:any) => {
         console.log(e,'s')
-        const uploadPDFUrl = await uploadPDF(e.target.files[0]);
+       // const uploadPDFUrl = await uploadPDF(e.target.files[0]);
+       const imageName = e.target.files[0]
+       const fileName = `mangrow/pdf${Date.now()}.pdf`
+       const uploadPDFUrl = await putObject(fileName)
         console.log('reached ',{value:uploadPDFUrl})
+        await axios.put(uploadPDFUrl, imageName, {
+            headers: {
+                'Content-Type': imageName.type,
+            },
+        });
         
         const newImage = {
             target: {
               name: 'uploadPDF',
-              value: uploadPDFUrl,
+              value: fileName,
             },
           };
-        setOutData({value:uploadPDFUrl})
-        console.log({value:uploadPDFUrl})
+          generatePdfUrl(fileName)  
+       
+        const currentFile = await getObjectUrl(fileName)  
+        setOutData({value:currentFile})
+         
         onChange(newImage)
         console.log(newImage,'newImage')
         setUpload(true)
     };
      
-    useEffect(()=>{
-        console.log(formData,'formdata')
-    },[formData])
+  
 
     return (
         <div className="w-[100%] h-[100%]    flex   justify-center">
@@ -53,7 +74,7 @@ const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onCha
 
                 </div> :                  
                 <div className="h-[100%] w-[100%] flex-col rounded-xl   overflow-scroll flex justify-center items-center">
-                    <PdfPreview fileUrl={value} />
+                    {pdfLink? <PdfPreview fileUrl={pdfLink} />:''}
                     </div>
                 } 
                 {changebutton? <div className="absolute  bottom-5 end-10 bg-gray-600 bg-opacity-50  flex w-1/6 h-20 rounded-xl justify-between items-center p-4   ">

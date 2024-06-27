@@ -18,7 +18,7 @@ const App = (_props:App_page) => {
      <GoogleOAuthProvider clientId="150250688028-3q3h69aphbc5q7i82f4n6if7or9d3c2d.apps.googleusercontent.com">
       <Provider store={appStore}>
       
-       <ErrorBoundary> 
+       {/* <ErrorBoundary>  */}
           <div   className={`${theme} overflow-y-scroll block h-screen `}>
             <div className={` rounded-xl w-full top-0 left-0  bg-blue-400 bg-opacity-5 xl:h-[10%] h-[24%]     `} >
               <Header/>
@@ -27,7 +27,7 @@ const App = (_props:App_page) => {
               <Outlet />
             </div>
           </div>
-         </ErrorBoundary> 
+         {/* </ErrorBoundary>  */}
       </Provider>
      </GoogleOAuthProvider>
   )
