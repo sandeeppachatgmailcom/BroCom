@@ -21,17 +21,17 @@ const GAuth = (_props:GauthComponent) => {
         setModal(true)
         const result = await axiosApi.post(userApi.signUp,formData)
         .then(response => {
-          console.log('Response:', response.data);
+          console.log('Response:', response.data._doc);
           setModal(false)
             if(response.data.success){
                 const user = {
-                    humanid: response.data.humanid,
-                    firstName:response.data.name  ,
-                    isAdmin:response.data.isAdmin ,
-                    active:response.data.active ,
-                    role:response.data.role,
+                    humanid: response.data._doc.humanid,
+                    firstName:response.data._doc.name  ,
+                    isAdmin:response.data._doc.isAdmin ,
+                    active:response.data._doc.active ,
+                    role:response.data._doc.role,
                     otpVerified:true ,
-                    email:response.data.email
+                    email:response.data._doc.email
                 }
                 dispatch(login(user))
             }
@@ -54,7 +54,7 @@ const GAuth = (_props:GauthComponent) => {
         <div className='flex items-center justify-center text-center rounded-xl p-5'>
             {modal?<Modal/>:''}
             <GoogleLogin  click_listener ={()=>{
-            !_props?.role.length?toast.error('Choose a role to Continue'):''
+            // !_props?.role.length?toast.error('Choose a role to Continue'):''
         }} 
                 onSuccess={credentialResponse => {
                     console.log(credentialResponse);

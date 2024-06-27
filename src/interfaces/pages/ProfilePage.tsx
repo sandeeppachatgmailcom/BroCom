@@ -32,7 +32,7 @@ const ProfilePage = (_props: any) => {
     const [address, setAddress] = useState([])
     const [formData, setFormData] = useState(user)
     const changes = useCompareObjects(user, formData)
-    const [promoCode,setPromoCode] = useState<{promoCode:string,email:string}>({promoCode:'',email:''})
+    const [promoCode,setPromoCode] = useState<{promoCode:string,email:string,googleAuth:Boolean}>({promoCode:'',email:'',googleAuth:true})
     const handlePromotion =  (e:any)=>{
         const {name,value} = e.target;
         setPromoCode({
@@ -113,7 +113,8 @@ const ProfilePage = (_props: any) => {
             setFormData(user)
             setPromoCode({
                 ...promoCode,
-                email:user.email
+                email:user.email,
+                googleAuth:true, 
             })
 
         }
@@ -334,9 +335,9 @@ const ProfilePage = (_props: any) => {
                                                         <br />
                                                     </div>
 
-                                                    <div className="flex justify-end ">
-                                                        <button onClick={() => { SavePetsonalinfo() }} className="border border-blue-800 border-opacity-10 bg-transparent m-1 w-[70px] bg-blue-500 rounded-md text-white cursor-pointer h-[40px] ">Save </button>
-                                                        <button onClick={() => { setFormData(user) }} className="border border-blue-800 border-opacity-10 bg-transparent m-1 w-[70px] bg-red-600  rounded-md text-white  cursor-pointer h-[40px] ">Reset  </button>
+                                                    <div className="flex justify-end   ">
+                                                        <button onClick={() => { SavePetsonalinfo() }} className="border border-blue-800 border-opacity-10   m-1 w-[70px] bg-blue-500 rounded-md text-white cursor-pointer h-[40px] ">Save </button>
+                                                        <button onClick={() => { setFormData(user) }} className="border border-blue-800 border-opacity-10   m-1 w-[70px] bg-red-600  rounded-md text-white  cursor-pointer h-[40px] ">Reset  </button>
                                                     </div>
                                                 </div>
                                             </div>

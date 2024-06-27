@@ -139,9 +139,9 @@ function Login( ) {
       <ToastContainer />
       {modal ? <Modal /> : ''}
 
-      <div className="xl:flex     justify-center hidden xl:w-4/6 opacity-45 items-center w-full overflow-hidden  sm:block h-[70%]    m-2 ">
+      <div className="xl:flex     justify-center hidden xl:w-4/6  items-center w-full overflow-hidden  sm:block h-[70%]    m-2 ">
         <LoginGraph />
-
+       
       </div>
       <div className={`flex flex-col  xl:flex justify-center  items-center w-full    p-3 h-[70%] xl:w-2/6 m-1 rounded-lg  `}>
         <div className=" block w-8/12   overflow-hidden border border-gray-600 justify-self-center border-opacity-15 shadow-xl  rounded-xl p-3  ">

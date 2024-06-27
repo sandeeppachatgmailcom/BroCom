@@ -110,13 +110,13 @@ const SignUp = (_props: SignupPage_pages) => {
   return (
     <div className={` ${darkTheme.theme} flex  xl:flex lg:flex  sm:block flex-col justify-center xl:w-full items-center m-3 h-[100%] `}>
       {modal ? <Modal /> : ''}
-      <div className="xl:flex justify-center sm:w-full sm:block  md:w-full items-center p-2 lg:h-[100%] ">
+      <div className="xl:flex justify-center sm:w-full sm:block  md:w-full items-center p-2 lg:h-[30%] ">
         <div className='text-2xl items-center text-center justify-center flex h-[100%] animate-pulse'>
           {info}
         </div>
       </div>
-      <div className={`${darkTheme.theme} h-[100%] sm:w-full     justify-center flex max-w-md w-full space-y-8  p-5 rounded-xl`}>
-        <div className={` ${darkTheme.theme} h-[100%] max-w-md w-full space-y-8 border-8 border-gray-600 border-opacity-30 p-5 rounded-xl`}>
+      <div className={`${darkTheme.theme} h-[70%] sm:w-full  overflow-y-scroll   justify-center flex max-w-md w-full space-y-8  p-5 rounded-xl`}>
+        <div className={` ${darkTheme.theme} h-[100%] max-w-md w-full space-y-8 border-4 border-gray-600 border-opacity-30 p-5 rounded-xl`}>
           <div>
             <h2 className={` ${darkTheme.inputtext} mt-6 text-center text-3xl  `}>Sign up</h2>
           </div>
@@ -125,11 +125,11 @@ const SignUp = (_props: SignupPage_pages) => {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="name" className={` ${darkTheme.inputtext} text-sm `}>Name</label>
-              <input id="name" required name="firstName" type="text" value={formData.firstName} onChange={handleChange} autoComplete="name" className={`${darkTheme.inputtext} appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`} placeholder="Name" />
+              <input id="name" required name="firstName" type="text" value={formData.firstName} onChange={handleChange} autoComplete="name" className={`${darkTheme.inputtext}   appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 border-opacity-30 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`} placeholder="Name" />
             </div>
             <div>
               <label htmlFor="email" className='text-sm'  >Email address</label>
-              <input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} autoComplete="email" className={`${darkTheme.inputtext} appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`} placeholder="Email address" />
+              <input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} autoComplete="email" className={`${darkTheme.inputtext} appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 border-opacity-30 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`} placeholder="Email address" />
             </div>
 
             <div className='flex items-center pt-3'>
@@ -138,8 +138,8 @@ const SignUp = (_props: SignupPage_pages) => {
             </div>
             <div>
               <label htmlFor="password" className="text-sm">Password</label>
-              <div ref={ref} id='passwordDiv' className='flex flex-row  appearance-none rounded-none relative   border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm  '>
-                <input onClick={handleDivMargin} id="password" name="password" type={`${view}`} required value={formData.password} onChange={handleChange} autoComplete="current-password" className={`${darkTheme.inputtext} appearance-none borde relative block   px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm border-e-0 rounded-e-none w-5/6`} placeholder="Password" />
+              <div ref={ref} id='passwordDiv' className='flex flex-row  appearance-none rounded-none relative   border border-gray-300 border-opacity-30  placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm  '>
+                <input onClick={handleDivMargin} id="password" name="password" type={`${view}`} required value={formData.password} onChange={handleChange} autoComplete="current-password" className={`${darkTheme.inputtext}  appearance-none borde relative block   px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm border-e-0 rounded-e-none w-5/6`} placeholder="Password" />
                 <button className='border-s-0  border-gray-300 rounded-e-md w-1/6 items-end justify-end pl-10 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10' onClick={(e) => {
                   e.preventDefault();
                   view == 'password' ? setView('text') : setView('password')
@@ -148,7 +148,7 @@ const SignUp = (_props: SignupPage_pages) => {
             </div>
             <div >
               <label htmlFor="password" className="text-sm">Retype Password</label>
-              <div id='passwordDiv' className='flex  flex-row w-full  appearance-none rounded-none relative border    border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm '>
+              <div id='passwordDiv' className='flex  flex-row w-full  appearance-none rounded-none relative border border-opacity-30   border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm '>
                 <input onClick={handleDivMargin} id="retypepassword" name="password" type={`${retypeView}`} required value={String(password)} onChange={(e: any) => { setPassword(e.target.value) }} autoComplete="current-password " className={`${darkTheme.inputtext}  appearance-none rounded-none relative block   px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10   sm:text-sm border-e-0 rounded-e-none w-5/6`} placeholder="Password" />
                 <button className='border-s-0  border-gray-300 rounded-e-md w-1/6 items-center   flex justify-center    focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10' onClick={(e) => {
                   e.preventDefault();
