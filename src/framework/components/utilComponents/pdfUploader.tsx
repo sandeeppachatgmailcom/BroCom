@@ -9,7 +9,6 @@ import { putObject, getObjectUrl } from "../../services/s3Bucket";
 import axios from "axios";
 const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onChange  }:ProfileImageBox_Component) => {
     const imageInputRef = useRef<HTMLInputElement | null> (null);
-    const [formData,  ] = useState(value);
     const [upload,setUpload] =  useState(false)
     const [outData,setOutData] = useState({value:''})
     const [pdfLink,setPdflink] = useState('') 
