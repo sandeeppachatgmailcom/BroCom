@@ -115,7 +115,7 @@ const SignUp = (_props: SignupPage_pages) => {
           {info}
         </div>
       </div>
-      <div className={`${darkTheme.theme} h-[100%] sm:w-full   border justify-center flex max-w-md w-full space-y-8  p-5 rounded-xl`}>
+      <div className={`${darkTheme.theme} h-[100%] sm:w-full     justify-center flex max-w-md w-full space-y-8  p-5 rounded-xl`}>
         <div className={` ${darkTheme.theme} h-[100%] max-w-md w-full space-y-8 border-8 border-gray-600 border-opacity-30 p-5 rounded-xl`}>
           <div>
             <h2 className={` ${darkTheme.inputtext} mt-6 text-center text-3xl  `}>Sign up</h2>
