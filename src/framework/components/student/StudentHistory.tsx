@@ -5,7 +5,7 @@ import MarkList from "./MarkList";
 import WritingScoreGraph from "./WritingScoreGraph";
  
 import useStudentProgressSummary from "../../../useCases/useStudentProgressSummary";
-import CircleChart from "../graphs/CircleGraph";
+// import CircleChart from "../graphs/CircleGraph";
 import useGetUserByemail from "../../../useCases/useGetUserByemail";
 import { UserEntity_Model } from "../../../entity/response/userModel";
 
