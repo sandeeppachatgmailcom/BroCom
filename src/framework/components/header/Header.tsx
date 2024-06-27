@@ -64,7 +64,7 @@ function Header() {
       if (response.status === 200) {
         console.log('Cookie deleted and logout successful:', response.data);
         dispatch(login({})); // Dispatch login action (assuming Redux)
-        // navigate('/signin'); // Navigate to login page (optional)
+        navigate('/signin'); // Navigate to login page (optional)
       } else {
         console.error('Error during logout:', response.statusText);
         // Handle logout error (e.g., display error message)

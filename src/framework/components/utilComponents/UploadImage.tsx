@@ -4,36 +4,58 @@ import UploadImage from "../../services/firebase";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { ProfileImageBox_Component } from "../../../entity/components/common/profileImageBox";
 import { FaExclamation } from "react-icons/fa"; 
+import { getObjectUrl, putObject } from "../../services/s3Bucket";
+import axios from "axios";
 const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onChange  }:ProfileImageBox_Component) => {
     const imageInputRef = useRef<HTMLInputElement | null> (null);
      
     const [formData,  ] = useState(value);
     const [upload,setUpload] =  useState(false)
     const [outData,setOutData] = useState({value:''})
+    const [imageLink,setImagelink] = useState('') 
     
     useEffect(() => {
+        generatePdfUrl(value)
         setOutData({value:value});
     }, [value]);
     useEffect(()=>{
      setUpload(false)   
     },[])
 
+    
+    const generatePdfUrl = async (documentKey:string)=>{
+        const currentFile = await getObjectUrl(documentKey) 
+        console.log(currentFile,'pdflink ')
+        setImagelink(currentFile)
+    }
+
+
     const uploadImage = async (e:any) => {
-        const uploadedUrl = await UploadImage(e.target.files[0]);
-        console.log('reached ',{value:uploadedUrl})
+        const image:any = e.target.files[0]
+        const fileName = `mangrow/image/pdf${Date.now()}.${image.type}`
+       const uploadImageUrl = await putObject(fileName)
+        await axios.put(uploadImageUrl, image, {
+            headers: {
+                'Content-Type': image.type,
+            },
+        });
         
+
+
+
+
         const newImage = {
             target: {
               name: 'uploadedImageUrl',
-              value: uploadedUrl,
+              value: fileName,
             },
           };
      
         
-         console.log(newImage,'newImage')
+          
          
-        setOutData({value:uploadedUrl})
-        console.log({value:uploadedUrl})
+        setOutData({value:fileName})
+        
         onChange(newImage)
         console.log(newImage,'newImage')
         setUpload(true)
@@ -54,7 +76,7 @@ const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onC
                     <h1 className="text-3xl text-gray-200 m-4">Empty</h1>
                     <FaExclamation   className="h-[50%]      text-gray-200 w-[50%]" /> 
                 </div> :                  
-                    <div className="h-[100%] w-[100%]     border-blue-800 border-opacity-35 rounded-xl overflow-hidden " style={{ backgroundImage: `url(${outData.value})`,backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }} />
+                    imageLink ? <div className="h-[100%] w-[100%]     border-blue-800 border-opacity-35 rounded-xl overflow-hidden " style={{ backgroundImage: `url(${imageLink})`,backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }} />:'' 
                 } 
                 {changebutton? <div className="absolute  bottom-5 end-10 bg-gray-600 bg-opacity-50  flex w-1/6 h-20 rounded-xl justify-between items-center p-4   ">
                     <button className="   text-white   " onClick={() => { imageInputRef?.current?.click(); }}> <FaCamera className="h-10 w-10" /> </button> 

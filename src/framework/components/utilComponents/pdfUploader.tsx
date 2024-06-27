@@ -23,7 +23,6 @@ const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onCha
     
     
     useEffect(() => {
-        console.log(value,'input value  ')
         generatePdfUrl(value)
         setOutData({value:value});
     }, [value]);
@@ -35,7 +34,7 @@ const UploadPdfDocument = ({ height, width, changebutton,value,onSaveClick,onCha
         console.log(e,'s')
        // const uploadPDFUrl = await uploadPDF(e.target.files[0]);
        const imageName = e.target.files[0]
-       const fileName = `mangrow/pdf${Date.now()}.pdf`
+       const fileName = `mangrow/pdf/pdf${Date.now()}.pdf`
        const uploadPDFUrl = await putObject(fileName)
         console.log('reached ',{value:uploadPDFUrl})
         await axios.put(uploadPDFUrl, imageName, {
