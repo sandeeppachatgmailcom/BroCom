@@ -49,7 +49,7 @@ const StudentHistory = ({ useremail}:{ useremail:string})=>{
         <div className="  rounded-lg block bg-opacity-5 P-1 m-1 w-100 ">
                 <div className="flex      h-[250px] rounded-xl  p-1 justify-center m-1 w-full" >
                     <div className=" flex w-6/12 rounded-xl ">
-                    <CircleChart   data={pendingGraphData}  />  
+                    {/* <CircleChart   data={pendingGraphData}  />   */}
                     </div>
                 </div>
                 <div ref={parentDivRef}   className="flex relative rounded-xl h-full     p-1 overflow-scroll justify-between w-full">
