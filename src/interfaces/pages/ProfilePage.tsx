@@ -68,8 +68,7 @@ useEffect(()=>{
         setAddress(address.data[0].PostOffice)
     }
     const getUser = async () => {
-        const role = document?.cookie
-            .split(';').map((item) => item.split('=')).filter((item) => item[0].trim().startsWith('man'))[0][0] || false;
+        const role = document?.cookie.split(';').map((item) => item.split('=')).filter((item) => item[0].trim().startsWith('man'))[0][0] || false;
         if (role) {
            
             const responce = await axiosApi.get(userApi.getlogin + `/${role.trim()}`)
