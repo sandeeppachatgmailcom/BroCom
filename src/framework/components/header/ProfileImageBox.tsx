@@ -19,7 +19,7 @@ const ProfileImageBox = ({ height, width, changebutton }:ProfileImageBox_Compone
     
     const generatePdfUrl = async (documentKey:string)=>{
         const currentFile = await getObjectUrl(documentKey) 
-        console.log(currentFile,'pdflink ')
+         
         setImagelink(currentFile)
     }
 
