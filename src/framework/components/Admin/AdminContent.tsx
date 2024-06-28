@@ -52,9 +52,9 @@ const AdminContent :React.FC<{}> = (_props:AdminContent_Component) => {
             <div className='xl:w-1/6  m-1 rounded border-r-2 border-gray-500 border-opacity-15  '>
                  
                 <div className='w-full xl:block flex   m-1 rounded sm:flex lg:flex md:flex  sm:flex-wrap flex-wrap ' >
-                    {Object.keys(batch).length? batch.map((item, index) => {
+                    {Object.keys(batch).length? batch?.map((item, index) => {
                         if (index < page * 5 && index >= (page - 1) * 5) return <button onClick={    () =>{  setMenu(item?.batchName as string);   setActiveBatch(item);setMenuIndex(index)}} className={`font-bold h-[60px] flex m-1 p-2 text-start items-center bg-opacity-80 
-                        ${menu === item.batchName ? 'bg-blue-200 text-blue-500 shadow-sm shadow-blue-200 ' : 'bg-blue-000  '}
+                        ${menu === item?.batchName ? 'bg-blue-200 text-blue-500 shadow-sm shadow-blue-200 ' : 'bg-blue-000  '}
                           xl:w-5/6 rounded-full xl:rounded-s
                       `} key={item.batchName} > {item?.batchName?.toUpperCase()} </button>
                     }):''}
