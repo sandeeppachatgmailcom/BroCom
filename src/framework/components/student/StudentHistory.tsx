@@ -85,8 +85,8 @@ const StudentHistory = ({ useremail}:{ useremail:string})=>{
                                 </div>
                                 <div className="block w-9/12 h-10  overflow-scroll  ">
                                     <div className=" flex w-full flex-nowrap">
-                                    {Object.keys(user?.submission[submission][item][0]?.mark).map((mark:any)=>{
-                                        return user?.submission[submission][item][0]?.mark[mark] ? <button className={` ${buttonColor[mark] } w-8 h-8 text-small p-1 rounded-md text-white  m-1`} type="button">{mark} </button>:<button className={` ${buttonColor[mark]} w-8 h-8 text-small p-1 rounded-md text-white bg-opacity-15 text-opacity-35 m-1`} type="button">{mark} </button>   
+                                    {Object.keys(user?.submission[submission][item][0]?.mark).map((mark:any,index:number)=>{
+                                        return user?.submission[submission][item][0]?.mark[mark] ? <button key={index} className={` ${buttonColor[mark] } w-8 h-8 text-small p-1 rounded-md text-white  m-1`} type="button">{mark} </button>:<button key={index} className={` ${buttonColor[mark]} w-8 h-8 text-small p-1 rounded-md text-white bg-opacity-15 text-opacity-35 m-1`} type="button">{mark} </button>   
                                     })}
                                     </div>
                                         <h1 className="text-sm items-center h-10  "> {user?.submission[submission][item][0]?.comment}</h1>      

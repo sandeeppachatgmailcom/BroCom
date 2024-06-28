@@ -33,32 +33,39 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   const [activeCalls,setActiveCalls] = useState<any>([]) 
   const [socket, setSocket] = useState<Socket | null|any>(null);
    
- 
+  
   useEffect(() => {
-    console.log('socket cnnection estabished')
-    const newSocket = io(`wss://sandeeppachat.xyz`, {
-      transports: ['websocket'],
-      upgrade: false
-  }); 
-    console.log(newSocket,'newSocketnewSocket')
-    setSocket(newSocket);
-    newSocket.on('connect', () => {
-       
-    });
-    newSocket.on('disconnect', () => {
-       
-    });
-    newSocket.on('connect_error', (err: Error) => {
-       console.log(err)
-    });
-    setSocket(newSocket);
-    return () => {
-      if (newSocket) {
-        newSocket.disconnect();
-      }
-    };
+    console.log('Attempting to establish socket connection');
 
+    const newSocket = io('wss://sandeeppachat.xyz', {
+      transports: ['websocket'],
+      upgrade: true,
+    });
+
+    console.log('Socket instance created:', newSocket);
+
+    newSocket.on('connect', () => {
+      console.log('Socket connected:', newSocket.id);
+    });
+
+    newSocket.on('disconnect', () => {
+      console.log('Socket disconnected');
+    });
+
+    newSocket.on('connect_error', (err) => {
+      console.error('Connection error:', err);
+    });
+
+    setSocket(newSocket);
+
+    // return () => {
+    //   console.log('Cleaning up socket connection');
+    //   if (newSocket) {
+    //     newSocket.disconnect();
+    //   }
+    // };
   }, []);
+
   // always update the list of onlineuserd , ueseeffect will work when ever change founde the varibales in dependancy
   useEffect(() => {
     const userList:any = contact?.map((user:any) => ({
@@ -92,9 +99,6 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
       }
      }) 
   },[activeCalls]);
-
-   
-
   //updating users list to identify call waiting 
   useEffect(() => {
     const userList:any = usersList.map((user:any) => ({
@@ -120,6 +124,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
     dispatch(updateChatUser(user));
   }, [user, dispatch]);
   const handleUsersOnline = (message:any) => {
+    console.log(message,'online users')
     setOnlineUsers(message);
   };
   const handleSendMessage = (message:any) => {
@@ -187,9 +192,9 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
       socket?.off("addUser", handleAddUser);
       socket?.off("send-message", handleSendMessage);
       socket?.off("user:callRequest",handleIncommingCall)
-      if (socket) {
-        socket.close();
-      }
+      // if (socket) {
+      //   socket.close();
+      // }
     };
   }, [socket, initialSocket, activeUser.email, usersList]);
 
