@@ -36,7 +36,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
  
   useEffect(() => {
     console.log('socket cnnection estabished')
-    const newSocket = io(`https://sandeeppachat.xyz/`, {
+    const newSocket = io(`https://sandeeppachat.xyz`, {
       transports: ['websocket'],
       upgrade: false
   }); 
