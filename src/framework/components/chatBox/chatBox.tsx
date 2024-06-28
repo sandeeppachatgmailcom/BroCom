@@ -54,7 +54,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
     setSocket(newSocket);
     return () => {
       if (newSocket) {
-       // newSocket.disconnect();
+        newSocket.disconnect();
       }
     };
 
