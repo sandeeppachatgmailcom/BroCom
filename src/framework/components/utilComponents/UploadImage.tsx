@@ -31,31 +31,25 @@ const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onC
 
 
     const uploadImage = async (e:any) => {
+        console.log('hello')
+
         const image:any = e.target.files[0]
         const fileName = `mangrow/image/${Date.now()}.${image.type}`
-       const uploadImageUrl = await putObject(fileName)
+        const uploadImageUrl = await putObject(fileName)
         await axios.put(uploadImageUrl, image, {
             headers: {
                 'Content-Type': image.type,
             },
         });
-        
-
-
-
-
         const newImage = {
             target: {
               name: 'uploadedImageUrl',
               value: fileName,
             },
           };
-     
-        
-          
-         
+          console.log(newImage,'newImage')
+
         setOutData({value:fileName})
-        
         onChange(newImage)
         console.log(newImage,'newImage')
         setUpload(true)
@@ -71,7 +65,7 @@ const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onC
     return (
         <div className="w-[100%] h-[100%]    flex  rounded-b-2xl rounded-t-none   justify-center">
             <div style={{ height: height, width: width }} className="relative rounded-t-none rounded-b-2xl      w-20 h-20 overflow-hidden">
-                <input ref={imageInputRef} onChange={(e) => uploadImage(e)} accept="image/*" type="file" hidden name="profileImage" id="" />
+                <input ref={imageInputRef} onChange={(e) => {uploadImage(e);console.log('first')}} accept="image/*" type="file" hidden name="profileImage" id="" />
                 {!outData.value ? <div className="h-[100%] w-[100%] flex-col   overflow-hidden flex justify-center items-center">
                     <h1 className="text-3xl text-gray-200 m-4">Empty</h1>
                     <FaExclamation   className="h-[50%]      text-gray-200 w-[50%]" /> 
@@ -79,8 +73,8 @@ const UploadImageDocument = ({ height, width, changebutton,value,onSaveClick,onC
                     imageLink ? <div className="h-[100%] w-[100%]     border-blue-800 border-opacity-35 rounded-xl overflow-hidden " style={{ backgroundImage: `url(${imageLink})`,backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }} />:'' 
                 } 
                 {changebutton? <div className="absolute  bottom-5 end-10 bg-gray-600 bg-opacity-50  flex w-1/6 h-20 rounded-xl justify-between items-center p-4   ">
-                    <button className="   text-white   " onClick={() => { imageInputRef?.current?.click(); }}> <FaCamera className="h-10 w-10" /> </button> 
-                    {outData?.value?.length && upload   ? <button className="   text-white  " onClick={() => {  onSaveClick() }}> <FaCloudUploadAlt  className="h-10 w-10" /> </button>:'' }
+                    <button className="   text-white   " onClick={() => { imageInputRef?.current?.click(); }}> <FaCamera className="h-5 w-5" /> </button> 
+                    {outData?.value?.length && upload   ? <button className="   text-white  " onClick={() => {  onSaveClick() }}> <FaCloudUploadAlt  className="h-5 w-5" /> </button>:'' }
                 </div>:''}
             </div> 
         </div>
