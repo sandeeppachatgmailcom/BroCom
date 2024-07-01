@@ -139,10 +139,14 @@ function Login( ) {
       <ToastContainer />
       {modal ? <Modal /> : ''}
 
-      <div className="xl:flex     justify-center hidden xl:w-4/6  items-center w-full overflow-hidden  sm:block h-[70%]    m-2 ">
-        <LoginGraph />
+      <div className="xl:flex  flex-col   justify-center hidden xl:w-4/6 p-1  items-start w-full overflow-hidden  sm:block h-[70%]    m-2 ">
+        {/* <LoginGraph />  */}
+
+         <h1 className="text-8xl   text-blue-500 font-semibold bg-gradient-to-tr bg-transparent" >Abijith Babu & Associates</h1> 
+         <br />
+         <small className="text-2xl" >Practicing Company Secretary </small> 
        
-      </div>
+ </div>
       <div className={`flex flex-col  xl:flex justify-center  items-center w-full    p-3 h-[70%] xl:w-2/6 m-1 rounded-lg  `}>
         <div className=" block w-8/12   overflow-hidden border border-gray-600 justify-self-center border-opacity-15 shadow-xl  rounded-xl p-3  ">
           <h2 className={`${classDarkTheme} text-2xl font-semibold mb-4`}>Login</h2>
