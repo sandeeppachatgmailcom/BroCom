@@ -113,29 +113,29 @@ function Header() {
 
 
   return (
-    <div className={`  md:flex flex-col sm:flex-row rounded-xl  w-full h-[100%] items-center justify-between shadow-lg `}>
+    <div className={`  flex  rounded-sm    w-full h-[100%] items-center justify-between  border-b border-opacity-30 border-gray-300 `}>
 
-      <div className={` flex items-start justify-start md:h-[100%] h-[30%] flex-col   w-6/12 p-4`}>
-        <h6 className={` float-start  sm:w-auto text-2xl text-blue-500 font-semibold `}>
+      <div className={` flex items-center   justify-start md:h-[100%] h-[100%]     w-6/12 `}>
+        <h6 className={` float-start  ms-1 sm:w-auto   text-2xl text-blue-400 font-semibold `}>
           {company}
         </h6>
         {Object.keys(activeUser).length
-          ? <button className=' rounded-2xl text-right text-2xl bg-opacity-15 h-20 font-semibold' onClick={() => { if (Object.keys(activeUser).length && activeUser.otpVerified) navigate(`/${activeUser.role}`) }} type="button"  > {activeUser.firstName} </button>
+          ? <button className=' rounded-2xl text-right text-2xl bg-opacity-15   h-20 font-semibold' onClick={() => { if (Object.keys(activeUser).length && activeUser.otpVerified) navigate(`/${activeUser.role}`) }} type="button"  > {activeUser.firstName} </button>
           : ''}
       </div>
-      <div className={`md:flex  items-center md:w-6/12 w-full h-[70%]   rounded-xl overflow-scroll block  justify-end `}>
-        <div className=' h-10   p-4  md:h-full rounded-xl flex  items-center justify-end   overflow-hidden  w-full md:w-6/12 '>
-          <button onClick={handleAdduser} className='  w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1 shadow-xl '>
+      <div className={`md:flex   items-center md:w-6/12 w-full h-[70%]   rounded-xl overflow-hidden block  justify-end `}>
+        <div className='  p-1 h-full   flex  items-center justify-end overflow-hidden  w-full md:w-6/12 '>
+          <button onClick={handleAdduser} className='  w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1   '>
             {Object.keys(activeUser).length ? <RiUserAddFill className='w-[100%] h-[100%] rounded-full   text-blue-500 bg-gray-600 bg-opacity-15 ' /> : ''}
           </button>
-          <button className='  w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1 shadow-xl ' onClick={handleLogout}>
+          <button className='  w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1   ' onClick={handleLogout}>
             {Object.keys(activeUser).length ? <FaPowerOff className='w-[100%] h-[100%] rounded-full   text-red-500 bg-gray-600 bg-opacity-15' /> : ''}
           </button>
           <button
             onClick={() => defaultTheme == 'dark' ? setDefaultTheme('light') : setDefaultTheme('dark')}
-            className={` w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1 shadow-xl`}
+            className={` w-1/12 justify-center h-[100%] rounded-full flex  items-center    m-1  `}
           >
-            {darkTheme ? <MdLightMode className='w-[100%] h-[100%] rounded-full   text-white-500 bg-gray-600 bg-opacity-15' /> : <MdDarkMode className='w-[100%] h-[100%] rounded-full   text-gray-500 bg-gray-800 bg-opacity-15' />}
+            {darkTheme ? <MdLightMode className='w-[100%] h-[100%] rounded-full   text-white-500 bg-transparent' /> : <MdDarkMode className='w-[100%] h-[100%] rounded-full   text-blue-900  bg-transparent' />}
           </button>
         </div>
 
