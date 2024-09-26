@@ -7,7 +7,8 @@ interface AxiosApiConfig {
 }
 
 const axiosApi: AxiosInstance = axios.create({
-  baseURL: 'https://sandeeppachat.xyz',
+  // baseURL: 'https://sandeeppachat.xyz',
+   baseURL: 'https://growcom.onrender.com',
   withCredentials: true
 } as AxiosApiConfig);
 

@@ -16,6 +16,7 @@ async function getObjectUrl(key:string){
         Bucket:'mangrow',
         Key:key
     })
+    
     const url =await getSignedUrl(s3Client,command)
     return url ; 
 
