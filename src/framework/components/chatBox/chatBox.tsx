@@ -159,7 +159,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   };
   const opennewTab = () => {
 
-    window.open(`http://localhost:5173/role`, '_blank');
+    window.open(`https://sandeeppachat.in//role`, '_blank');
     dispatch(toggleMultiUser())
   }
   const searchUser = (e:any) => {
@@ -197,8 +197,6 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
       // }
     };
   }, [socket, initialSocket, activeUser.email, usersList]);
-
-   
 
   return (
     <div className="shadow-lg p-2 flex flex-col overflow-scroll h-full rounded-xl">
