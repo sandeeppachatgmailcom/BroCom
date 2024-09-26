@@ -37,7 +37,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   useEffect(() => {
     console.log('Attempting to establish socket connection');
 
-    const newSocket = io('wss://sandeeppachat.xyz', {
+    const newSocket = io('wss://growcom.onrender.com', {
       transports: ['websocket'],
       upgrade: true,
     });
@@ -194,7 +194,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
       socket?.off("user:callRequest",handleIncommingCall)
       // if (socket) {
       //   socket.close();
-      // }
+    
     };
   }, [socket, initialSocket, activeUser.email, usersList]);
 
