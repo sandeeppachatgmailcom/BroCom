@@ -58,12 +58,12 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
 
     setSocket(newSocket);
 
-    // return () => {
-    //   console.log('Cleaning up socket connection');
-    //   if (newSocket) {
-    //     newSocket.disconnect();
-    //   }
-    // };
+    return () => {
+      console.log('Cleaning up socket connection');
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
   }, []);
 
   // always update the list of onlineuserd , ueseeffect will work when ever change founde the varibales in dependancy
