@@ -159,7 +159,7 @@ import { toggleMultiUser } from "../../ReduxStore/multipleUser";
   };
   const opennewTab = () => {
 
-    window.open(`https://sandeeppachat.in/role`, '_blank');
+    window.open(`http://localhost:5173/role`, '_blank');
     dispatch(toggleMultiUser())
   }
   const searchUser = (e:any) => {
