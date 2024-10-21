@@ -202,6 +202,11 @@ useEffect(()=>{
                                         <div className="justify-center   rounded-2xl  ">
 
                                             <h5 className=" text-2xl text-center  "> Basic info   </h5>
+                                            {user?.role == 'user' ? <div>
+                                                <h5 className=" text-2xl text-center animate-pulse text-orange-400  "> if you dont have any  personal promocode  try    </h5>
+                                                <h5 className=" text-2xl text-center animate-pulse text-orange-400  "> Student-promocode = 'STD00001' trainer-promocode = 'TRN00001' </h5>
+                                            </div>
+                                             :''}
                                             {/* <h1  className=" text-center " >{Object.keys(formData).length ? formData?.batch[0]?.batchName?.toUpperCase():''}</h1>     */}
                                             {user.role == 'user' ? <h1 className="text-blue-500 text-center text-2xl"> You profile is waiting for approval from admin, you can change your profile details now!!</h1> : ''}
                                             <div className="border border-blue-800 border-opacity-10 bg-transparent block bg-yello h-100  w-full  lg:flex justify-center text-center" >
