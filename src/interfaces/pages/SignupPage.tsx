@@ -166,7 +166,7 @@ const SignUp = (_props: SignupPage_pages) => {
               && formData.email.includes('@') ? <button onClick={(e) => { handleSubmit(e) }} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Sign up
             </ button> : <small className="  group relative flex-wrap w-full flex justify-center py-2 px-4 border text-center bg-opacity-5 border-transparent text-sm font-medium rounded-md text-red-500 bg-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Password should minimum 8 length and alphanumeric
+            The password should be at least 8 characters long, contain both letters and numbers, and include at least one uppercase and one lowercase letter
             </ small>}
 
           
