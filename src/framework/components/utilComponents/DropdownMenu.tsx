@@ -13,7 +13,7 @@ const DropdownMenu: React.FC<DropdownMenuComponent | any > = (props) => {
                 <option selected  key={'select'} className='flex h-10 bg-transparent text-gray-600  '  > Select </option>   
                 {items.map((item: any,index:any) => {
                  
-                  return  <option className=' h-[100px] border m-1 bg-blue-500 bg-transparent text-gray-600 ' key={index} value={item.id} selected={item.id === value}> {item.name.split('')[0]?.toUpperCase() +item.name.split('').splice(1,item.name.length).join('') } </option>
+                  return  <option className=' h-[100px] border m-1 bg-blue-500 bg-transparent text-gray-600 ' key={index} value={item.id} selected={item.id === value}> {item?.name?.split('')[0]?.toUpperCase() +item?.name?.split('').splice(1,item.name.length).join('') } </option>
                 })}
             </select>
         </div>
